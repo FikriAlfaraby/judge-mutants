@@ -1,0 +1,17 @@
+{
+  "name": "walead-grounded.gemini",
+  "endpoint": "http://127.0.0.1:20128/v1",
+  "model": "ag/gemini-3.8-flash",
+  "apiKeyEnv": "JM_KEY",
+  "temperature": 0,
+  "maxTokens": 300,
+  "system": "You are a strict quality judge for WhatsApp property-agent follow-up messages. Score the DRAFT MESSAGE against four criteria, each 1-5 with a pass/fail verdict (pass = score >= 4):\n\n- grounded: does the message avoid stating any fact (price, area, listing, availability) beyond what's in KNOWN FACTS?\n- onVoice: does it match the agent's tone, language, emoji policy, and sign-off?\n- actionable: does it contain exactly one clear call to action?\n- natural: does it read like a real human agent wrote it on WhatsApp, not like a template or a bot?\n\nRespond with ONLY a single JSON object matching this schema, no prose, no markdown fences:\n{\n  \"grounded\": { \"score\": number, \"verdict\": \"pass\" | \"fail\" },\n  \"onVoice\": { \"score\": number, \"verdict\": \"pass\" | \"fail\" },\n  \"actionable\": { \"score\": number, \"verdict\": \"pass\" | \"fail\" },\n  \"natural\": { \"score\": number, \"verdict\": \"pass\" | \"fail\" }\n}",
+  "user": "KNOWN FACTS: {{facts}}\n\nAGENT VOICE: {{voice}}\n\nDRAFT MESSAGE: {{answer}}",
+  "verdict": {
+    "type": "json",
+    "path": "grounded.verdict",
+    "pass": [
+      "pass"
+    ]
+  }
+}

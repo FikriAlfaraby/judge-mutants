@@ -3,7 +3,7 @@ import { test } from "node:test"
 
 import { mutate } from "../src/operators.ts"
 import type { Mutation, MutateInput } from "../src/operators.ts"
-import { bumpNumber, entities, numbers, sentences } from "../src/text.ts"
+import { bumpNumber, entities, isIndonesian, numbers, sentences } from "../src/text.ts"
 
 const run = (input: MutateInput) => Object.fromEntries(mutate(input).map((m) => [m.operator, m])) as Record<string, Mutation | undefined>
 
@@ -115,4 +115,48 @@ test("names are replaced as whole words, accents included", () => {
 test("a unit changes only where it measures a number", () => {
   assert.equal(run({ answer: "The Seven Years' War ended.", reference: "war", pool: [], seed: "u" }).unit, undefined)
   assert.equal(run({ answer: "Budget 1,5 miliar.", reference: "1,5 miliar", pool: [], seed: "u" }).unit?.change, "miliar -> juta")
+})
+
+test("amounts in another notation are still the same fact", () => {
+  const facts = '{"budgetIDR": 1500000000, "timeline": "bulan ini"}'
+  const id = run({ answer: "Budget 1,5 miliar IDR, target beli bulan ini.", reference: facts, pool: [], seed: "a" })
+  assert.equal(id.number?.change, "1,5 -> 1,6")
+  assert.equal(id.date?.change, "bulan ini -> bulan depan")
+  const en = run({ answer: "Budget of IDR 15,000,000, this week.", reference: '{"budgetIDR": 15000000}', pool: [], seed: "b" })
+  assert.equal(en.number?.change, "15,000,000 -> 16,000,000")
+  assert.equal(en.date?.change, "this week -> next week")
+})
+
+test("domain terms flip only through the case's own list", () => {
+  const terms: [string, string][] = [["buy", "rent"], ["1BR", "2BR"]]
+  const m = run({ answer: "Still looking to rent a 1BR in BSD?", reference: "{}", pool: [], seed: "t", terms })
+  assert.equal(m.term?.change, "rent -> buy")
+  assert.equal(run({ answer: "Still looking to rent a 1BR?", reference: "{}", pool: [], seed: "t" }).term, undefined)
+})
+
+test("a period inside a number or an abbreviation does not end a sentence", () => {
+  const text = 'A budget of IDR 1.5bn, e.g. in BSD. The U.S. Army said "yes." Then it left.'
+  assert.deepEqual(sentences(text).map((s) => s.text), ["A budget of IDR 1.5bn, e.g. in BSD.", 'The U.S. Army said "yes."', "Then it left."])
+})
+
+test("an amount glued to its scale word moves in place", () => {
+  const m = run({ answer: "Budget of IDR 1.5bn, this month.", reference: '{"budgetIDR": 1500000000}', pool: [], seed: "g" })
+  assert.equal(m.number?.text, "Budget of IDR 1.6bn, this month.")
+})
+
+const FOLLOW_UP = "Hi! Are you still looking to rent in BSD? No worries if plans changed. Best, Amelia"
+
+test("a message keeps its greeting, order and sign-off in every control", () => {
+  const m = run({ answer: FOLLOW_UP, reference: '{"areas": ["BSD"]}', pool: [], seed: "f" })
+  assert.equal(m.reorder, undefined, "a message is never reordered")
+  assert.equal(m.filler?.text, "Hi! Are you still looking to rent in BSD? No worries if plans changed. Thank you. Best, Amelia")
+  assert.equal(m.reformat?.text, "Hi!\n- Are you still looking to rent in BSD?\n- No worries if plans changed.\nBest, Amelia")
+  const one = run({ answer: "Hai, masih cari rumah di BSD untuk dibeli? Salam, Budi", reference: "{}", pool: [], seed: "o" })
+  assert.equal(one.reformat?.text, "Hai, masih cari rumah di BSD untuk dibeli?\n\nSalam, Budi")
+  assert.equal(one.filler?.change, "added: Terima kasih ya.")
+})
+
+test("Indonesian is recognised from common words, punctuation or not", () => {
+  assert.equal(isIndonesian("Bagaimana kalau kita jadwalkan obrolan singkat untuk membahas kebutuhan properti Anda? Salam, Budi"), true)
+  assert.equal(isIndonesian("Dan Brown wrote it in the U.S."), false)
 })

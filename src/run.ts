@@ -13,6 +13,8 @@ export interface Case {
   vars?: Record<string, string>
   /** Other values of the same kind as the reference, used first when a name is swapped. */
   distractors?: string[]
+  /** Domain words that flip a fact when exchanged, e.g. [["buy", "rent"]]. */
+  terms?: [string, string][]
 }
 
 export type ItemKind = "original" | "wrong" | "control"
@@ -52,7 +54,8 @@ export function plan(cases: Case[], only?: OperatorId[], excluded: Exclusion[] =
   const items: Item[] = []
   for (const c of cases) {
     items.push({ caseId: c.id, operator: "original", kind: "original", change: "", text: c.answer })
-    for (const m of mutate({ answer: c.answer, reference: c.reference, pool, seed: c.id, ...(c.distractors ? { distractors: c.distractors } : {}) })) {
+    const extra = { ...(c.distractors ? { distractors: c.distractors } : {}), ...(c.terms ? { terms: c.terms } : {}) }
+    for (const m of mutate({ answer: c.answer, reference: c.reference, pool, seed: c.id, ...extra })) {
       if (only && !only.includes(m.operator)) continue
       if (excluded.some((x) => x.caseId === c.id && x.operator === m.operator)) continue
       items.push({ caseId: c.id, operator: m.operator, kind: m.kind, change: m.change, text: m.text })

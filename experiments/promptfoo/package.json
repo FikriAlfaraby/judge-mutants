@@ -1,0 +1,9 @@
+{
+  "name": "judge-mutants-promptfoo-parsing",
+  "private": true,
+  "type": "module",
+  "description": "Feeds promptfoo's real model-graded assertions judge replies that mean FAIL, and records what promptfoo decides.",
+  "dependencies": {
+    "promptfoo": "0.124.1"
+  }
+}

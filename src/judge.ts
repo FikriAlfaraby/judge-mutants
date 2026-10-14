@@ -153,7 +153,8 @@ export async function callJudge(judge: JudgeConfig, vars: Record<string, string>
   if (judge.apiKeyEnv && !apiKey) throw new Error(`set ${judge.apiKeyEnv} to the judge's API key`)
   const doFetch = options.fetchImpl ?? fetch
   let lastError: unknown
-  for (let attempt = 0; attempt < 5; attempt += 1) {
+  // Gateways drop the odd call (a 503 after a stream reset); a long run should ride that out.
+  for (let attempt = 0; attempt < 8; attempt += 1) {
     try {
       const res = await doFetch(`${judge.endpoint.replace(/\/$/, "")}/chat/completions`, {
         method: "POST",
@@ -170,7 +171,7 @@ export async function callJudge(judge: JudgeConfig, vars: Record<string, string>
     } catch (err) {
       lastError = err
       if (err instanceof Error && /HTTP 4(0[0-9]|1[0-9])/.test(err.message) && !/HTTP 429/.test(err.message)) break
-      await new Promise((r) => setTimeout(r, 1000 * 2 ** attempt))
+      await new Promise((r) => setTimeout(r, Math.min(30_000, 1000 * 2 ** attempt)))
     }
   }
   throw lastError instanceof Error ? lastError : new Error(String(lastError))

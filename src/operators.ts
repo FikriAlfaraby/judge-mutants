@@ -1,8 +1,8 @@
-import { bumpNumber, digitsOf, entities, isIndonesian, numbers, sentences, splice, words } from "./text.ts"
+import { amounts, bumpNumber, digitsOf, entities, isGreeting, isIndonesian, isMessage, isSignOff, numberValue, numbers, sentences, splice, words } from "./text.ts"
 import type { Span } from "./text.ts"
 
 /** Wrong answers a judge must fail, and controls (same meaning, new form) it must still pass. */
-export type OperatorId = "number" | "negation" | "entity" | "unit" | "date" | "drop" | "reformat" | "filler" | "reorder"
+export type OperatorId = "number" | "negation" | "entity" | "unit" | "date" | "term" | "drop" | "reformat" | "filler" | "reorder"
 export type OperatorKind = "wrong" | "control"
 
 export const KIND: Record<OperatorId, OperatorKind> = {
@@ -11,6 +11,7 @@ export const KIND: Record<OperatorId, OperatorKind> = {
   entity: "wrong",
   unit: "wrong",
   date: "wrong",
+  term: "wrong",
   drop: "wrong",
   reformat: "control",
   filler: "control",
@@ -35,6 +36,8 @@ export interface MutateInput {
   pool: string[]
   /** Values of the same kind as the reference (other answers about the same text), preferred for swaps. */
   distractors?: string[]
+  /** Domain words that flip a fact when exchanged: [["buy", "rent"], ["1BR", "2BR"]]. */
+  terms?: [string, string][]
   /** Makes every choice repeatable (the case id). */
   seed: string
 }
@@ -56,12 +59,20 @@ const YEAR = /^(1[5-9]\d\d|20\d\d)$/
 /** A number the reference also states: 30 -> 40, 1.500.000 -> 1.600.000. Years are left to `date`. */
 function wrongNumber({ answer, reference }: MutateInput): Mutation | null {
   const wanted = new Set(numbers(reference).map((n) => digitsOf(n.text)))
-  const target = numbers(answer).find((n) => wanted.has(digitsOf(n.text)) && !YEAR.test(n.text))
+  let target: Span | undefined = numbers(answer).find((n) => wanted.has(digitsOf(n.text)) && !YEAR.test(n.text))
+  let attached = false
+  if (!target) {
+    // The same amount in another notation: the reference says 1500000000, the answer "1,5 miliar".
+    const values = numbers(reference).map((n) => numberValue(n.text))
+    target = amounts(answer).find((a) => values.some((v) => Math.abs(v - a.value) < 1e-6 * Math.max(1, v)))
+    attached = true
+  }
   if (!target) return null
   let replacement = bumpNumber(target.text)
   // Never bump onto another true value from the reference.
   for (let i = 0; i < 5 && wanted.has(digitsOf(replacement)); i += 1) replacement = bumpNumber(replacement)
-  const text = replaceAllToken(answer, target.text, replacement)
+  // An amount can be glued to its scale word ("1.5bn"), so it is replaced in place, not as a token.
+  const text = attached ? splice(answer, target, replacement) : replaceAllToken(answer, target.text, replacement)
   return { operator: "number", kind: "wrong", text, change: `${target.text} -> ${replacement}` }
 }
 
@@ -102,7 +113,7 @@ function negation({ answer, reference }: MutateInput): Mutation | null {
     // bracket or relative pronoun in between means another clause, so nothing is negated.
     for (let at = lower.indexOf(fact); at >= 0; at = lower.indexOf(fact, at + 1)) {
       const before = answer.slice(Math.max(0, at - 80), at)
-      const clause = before.split(/[,;:()\[\]]|\b(?:who|which|that|whose|where|yang)\b/i).pop() ?? ""
+      const clause = before.split(/[,;:()[\]]|\b(?:who|which|that|whose|where|yang)\b/i).pop() ?? ""
       const clauseStart = at - clause.length
       for (const [re, to] of rules) {
         const all = [...clause.matchAll(new RegExp(re.source, `${re.flags.replace("g", "")}g`))]
@@ -114,7 +125,7 @@ function negation({ answer, reference }: MutateInput): Mutation | null {
       }
       const after = /^\s*(\S+\s+){0,1}?/.exec(answer.slice(at + fact.length))
       const tail = answer.slice(at + fact.length, at + fact.length + 40)
-      if (after && !/^\s*[,;:()\[\]]/.test(tail)) {
+      if (after && !/^\s*[,;:()[\]]/.test(tail)) {
         for (const [re, to] of rules) {
           const m = re.exec(tail)
           if (!m || m.index > 12) continue
@@ -147,7 +158,10 @@ function negation({ answer, reference }: MutateInput): Mutation | null {
 function swapEntity({ answer, reference, pool, distractors, seed }: MutateInput): Mutation | null {
   const ref = reference.toLowerCase().replace(/[.,;]+$/, "").trim()
   if (!/\p{L}/u.test(ref)) return null // a bare number or year: the number and date operators own it
-  if (ref.split(/\s+/).length > 5) return null // a clause, not a name: swapping it reads as garbage
+  // A clause-length text reference is not a name: swapping it reads as garbage. Structured facts
+  // (a JSON object of fields) are long too, but the names inside them are fair game.
+  const structured = /^[[{]/.test(ref)
+  if (!structured && ref.split(/\s+/).length > 5) return null
   const quoted = answer.toLowerCase().indexOf(ref)
   const target =
     quoted >= 0 && /^\p{Lu}/u.test(answer.slice(quoted))
@@ -240,7 +254,40 @@ function shiftDate({ answer, reference }: MutateInput): Mutation | null {
       }
     }
   }
+  // Relative times: a timeline the reference states as "this month" becomes "next month".
+  for (const [from, to] of RELATIVE) {
+    const m = new RegExp(`\\b${from}\\b`, "i").exec(answer)
+    if (m) {
+      const shifted = matchCase(m[0], to)
+      return { operator: "date", kind: "wrong", text: splice(answer, { start: m.index, end: m.index + m[0].length }, shifted), change: `${m[0]} -> ${shifted}` }
+    }
+  }
   return null
+}
+
+const RELATIVE: [string, string][] = [
+  ["this week", "next week"],
+  ["this month", "next month"],
+  ["this year", "next year"],
+  ["today", "tomorrow"],
+  ["minggu ini", "minggu depan"],
+  ["bulan ini", "bulan depan"],
+  ["tahun ini", "tahun depan"],
+  ["hari ini", "besok"],
+]
+
+/** A domain word exchanged for its opposite from the case's own list: buy -> rent, 1BR -> 2BR. */
+function swapTerm({ answer, terms }: MutateInput): Mutation | null {
+  let best: { at: number; from: string; to: string } | null = null
+  for (const [a, b] of terms ?? []) {
+    for (const [from, to] of [[a, b], [b, a]] as const) {
+      const escaped = from.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+      const m = new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, "iu").exec(answer)
+      if (m && (!best || m.index < best.at)) best = { at: m.index, from: m[0], to: matchCase(m[0], to) }
+    }
+  }
+  if (!best) return null
+  return { operator: "term", kind: "wrong", text: splice(answer, { start: best.at, end: best.at + best.from.length }, best.to), change: `${best.from} -> ${best.to}` }
 }
 
 /** The sentence that carries the reference's facts is removed; the rest stays. */
@@ -255,35 +302,58 @@ function dropKey({ answer, reference }: MutateInput): Mutation | null {
   return { operator: "drop", kind: "wrong", text: rest, change: `removed: ${key.text}` }
 }
 
-/** Same words as a list, or with a label in front. */
+/**
+ * Same words, another layout: content sentences as a bulleted list, or with a label in front. In a
+ * message the greeting and sign-off keep their own lines.
+ */
 function reformat({ answer }: MutateInput): Mutation | null {
   const all = sentences(answer)
-  if (all.length >= 2) {
-    return { operator: "reformat", kind: "control", text: all.map((s) => `- ${s.text}`).join("\n"), change: "as a bulleted list" }
+  const content = all.filter((s) => !isGreeting(s.text) && !isSignOff(s.text))
+  if (content.length >= 2) {
+    const lines = all.map((s) => (content.includes(s) ? `- ${s.text}` : s.text))
+    return { operator: "reformat", kind: "control", text: lines.join("\n"), change: "as a bulleted list" }
+  }
+  if (content.length < all.length) {
+    // A one-line message: each part on its own line. Already on separate lines: one line.
+    const text = answer.includes("\n") ? all.map((s) => s.text).join(" ") : all.map((s) => s.text).join("\n\n")
+    return { operator: "reformat", kind: "control", text, change: answer.includes("\n") ? "joined into one line" : "one part per line" }
   }
   const label = isIndonesian(answer) ? "Jawaban: " : "Answer: "
   return { operator: "reformat", kind: "control", text: `${label}${answer.trim()}`, change: `prefixed "${label.trim()}"` }
 }
 
-/** A harmless sentence at the end. A judge that fails this is grading length or tone, not facts. */
+/**
+ * A harmless sentence. A judge that fails this is grading length or tone, not facts. In a message it
+ * goes before the sign-off, where a person would write it.
+ */
 function filler({ answer }: MutateInput): Mutation | null {
-  const extra = isIndonesian(answer) ? "Semoga membantu ya." : "I hope this helps."
+  const indonesian = isIndonesian(answer)
+  const all = sentences(answer)
+  const last = all[all.length - 1]
+  const before = all[all.length - 2]
+  if (last && before && isSignOff(last.text)) {
+    const extra = indonesian ? "Terima kasih ya." : "Thank you."
+    return { operator: "filler", kind: "control", text: splice(answer, { start: before.end, end: before.end }, ` ${extra}`), change: `added: ${extra}` }
+  }
+  const extra = indonesian ? "Semoga membantu ya." : "I hope this helps."
   return { operator: "filler", kind: "control", text: `${answer.trimEnd()} ${extra}`, change: `added: ${extra}` }
 }
 
 const CONNECTOR = /^(also|this|it|they|he|she|then|so|therefore|which|however|but|and|ini|itu|lalu|jadi|tapi|dan|dia|mereka)\b/i
 
-/** The first two sentences swap places, when neither leans on the other. */
+/**
+ * The first two sentences swap places, when neither leans on the other. Not in a message: its order
+ * (greeting, the point, the ask, the sign-off) is part of reading naturally.
+ */
 function reorder({ answer }: MutateInput): Mutation | null {
-  const all = sentences(answer)
-  if (all.length < 2) return null
-  const [a, b] = all
+  if (isMessage(answer)) return null
+  const [a, b] = sentences(answer)
   if (!a || !b || CONNECTOR.test(b.text) || CONNECTOR.test(a.text)) return null
-  const text = `${answer.slice(0, a.start)}${b.text} ${a.text}${answer.slice(b.end)}`
+  const text = `${answer.slice(0, a.start)}${b.text}${answer.slice(a.end, b.start)}${a.text}${answer.slice(b.end)}`
   return { operator: "reorder", kind: "control", text, change: "first two sentences swapped" }
 }
 
-const OPERATORS: Operator[] = [wrongNumber, negation, swapEntity, wrongUnit, shiftDate, dropKey, reformat, filler, reorder]
+const OPERATORS: Operator[] = [wrongNumber, negation, swapEntity, wrongUnit, shiftDate, swapTerm, dropKey, reformat, filler, reorder]
 
 /** Sentences that share at least one word with the reference, most shared words first. */
 function byRelevance(answer: string, reference: string): Span[] {

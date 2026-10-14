@@ -1,0 +1,17 @@
+{
+  "name": "noref-rubric.gemini",
+  "endpoint": "http://127.0.0.1:20128/v1",
+  "model": "ag/gemini-3.8-flash",
+  "apiKeyEnv": "JM_KEY",
+  "temperature": 0,
+  "maxTokens": 400,
+  "system": "You are grading output according to a user-specified rubric. If the statement in the rubric is true, then the output passes the test. You respond with a JSON object with this structure: {reason: string, pass: boolean, score: number}\n\nExamples:\n\n<Output>Hello world</Output>\n<Rubric>Content contains a greeting</Rubric>\n{\"reason\": \"the content contains the word 'Hello'\", \"pass\": true, \"score\": 1.0}\n\n<Output>Avast ye swabs, repel the invaders!</Output>\n<Rubric>Does not speak like a pirate</Rubric>\n{\"reason\": \"'avast ye' is a common pirate term\", \"pass\": false, \"score\": 0.0}",
+  "user": "<Output>\n{{answer}}\n</Output>\n<Rubric>\nThe output correctly answers this question: {{question}}\n</Rubric>",
+  "verdict": {
+    "type": "json",
+    "path": "pass",
+    "pass": [
+      true
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // judge-mutants: how often does your LLM judge pass a wrong answer?
 //
-//   judge-mutants plan --cases cases.jsonl [--operators number,entity]
+//   judge-mutants plan --cases cases.jsonl [--operators number,entity] [--show]
 //   judge-mutants run  --cases cases.jsonl --judge judge.json [--repeats 1] [--concurrency 4]
 //                      [--operators ...] [--limit N] [--out runs/name] [--max-false-pass 0.1]
 //
@@ -50,6 +50,7 @@ async function main(argv: string[]): Promise<number> {
       limit: { type: "string" },
       out: { type: "string" },
       "max-false-pass": { type: "string", default: "0.1" },
+      show: { type: "boolean", default: false },
     },
   })
   if (!values.cases || (command !== "plan" && command !== "run")) {
@@ -67,7 +68,16 @@ async function main(argv: string[]): Promise<number> {
     for (const item of items) counts.set(item.operator, (counts.get(item.operator) ?? 0) + 1)
     process.stdout.write(`${cases.length} cases, ${items.length} answers to judge\n`)
     for (const [op, n] of counts) process.stdout.write(`  ${op.padEnd(9)} ${n}\n`)
-    for (const item of items.slice(0, 12)) if (item.kind !== "original") process.stdout.write(`  ${item.caseId} ${item.operator}: ${item.change}\n`)
+    if (!values.show) {
+      for (const item of items.slice(0, 12)) if (item.kind !== "original") process.stdout.write(`  ${item.caseId} ${item.operator}: ${item.change}\n`)
+      return 0
+    }
+    // --show prints every changed answer in full, for the hand audit before any judge runs.
+    const references = new Map(cases.map((c) => [c.id, c.reference]))
+    for (const item of items) {
+      if (item.kind === "original") continue
+      process.stdout.write(`\n[${item.caseId}] ${item.kind} ${item.operator}: ${item.change}\n  reference: ${references.get(item.caseId)}\n  answer:    ${item.text}\n`)
+    }
     return 0
   }
 
