@@ -3,39 +3,21 @@
 //
 //   judge-mutants plan --cases cases.jsonl [--operators number,entity] [--show]
 //   judge-mutants run  --cases cases.jsonl --judge judge.json [--repeats 1] [--concurrency 4]
-//                      [--operators ...] [--limit N] [--out runs/name] [--max-false-pass 0.1]
+//                      [--operators ...] [--limit N] [--out runs/name]
+//                      [--max-false-pass 0.1] [--min-original-pass 0.8] [--max-unreadable 0.1]
 //
-// Exit code 1 when any wrong change passes more often than --max-false-pass, so it can gate CI.
-import { existsSync } from "node:fs"
+// Exit code 1 when the gate fails: a wrong change passes more often than --max-false-pass, the
+// judge passes too few of the untouched answers to measure anything, too many replies are
+// unreadable, or nothing was measured at all. Exit code 2 for a usage or input error.
 import { mkdir, readFile, writeFile } from "node:fs/promises"
-import { dirname, join } from "node:path"
+import { join } from "node:path"
 import { parseArgs } from "node:util"
 
-import { KIND } from "./operators.ts"
+import { gateProblems } from "./gate.ts"
+import { operatorList, readCases, readExclusions, share, UsageError, wholeNumber } from "./inputs.ts"
+import { validateJudge } from "./judge.ts"
 import { summarize, toMarkdown } from "./report.ts"
 import { judgeAll, plan } from "./run.ts"
-import type { JudgeConfig } from "./judge.ts"
-import type { OperatorId } from "./operators.ts"
-import type { Case, Exclusion } from "./run.ts"
-
-async function readCases(path: string, limit?: number): Promise<Case[]> {
-  const lines = (await readFile(path, "utf8")).split("\n").filter((l) => l.trim())
-  const cases = lines.map((line, i) => {
-    const c = JSON.parse(line) as Partial<Case>
-    if (!c.id || typeof c.answer !== "string" || typeof c.reference !== "string") {
-      throw new Error(`${path}:${i + 1}: each case needs id, answer and reference`)
-    }
-    return c as Case
-  })
-  return limit ? cases.slice(0, limit) : cases
-}
-
-function operatorList(value: string | undefined): OperatorId[] | undefined {
-  if (!value) return undefined
-  const ids = value.split(",").map((s) => s.trim()) as OperatorId[]
-  for (const id of ids) if (!(id in KIND)) throw new Error(`unknown operator "${id}"; known: ${Object.keys(KIND).join(", ")}`)
-  return ids
-}
 
 async function main(argv: string[]): Promise<number> {
   const [command, ...rest] = argv
@@ -50,44 +32,51 @@ async function main(argv: string[]): Promise<number> {
       limit: { type: "string" },
       out: { type: "string" },
       "max-false-pass": { type: "string", default: "0.1" },
+      "min-original-pass": { type: "string", default: "0.8" },
+      "max-unreadable": { type: "string", default: "0.1" },
       show: { type: "boolean", default: false },
     },
   })
   if (!values.cases || (command !== "plan" && command !== "run")) {
-    process.stderr.write("usage: judge-mutants plan|run --cases cases.jsonl [--judge judge.json] ...\n")
-    return 2
+    throw new UsageError("usage: judge-mutants plan|run --cases cases.jsonl [--judge judge.json] ...")
   }
-  const cases = await readCases(values.cases, values.limit ? Number(values.limit) : undefined)
-  // An excluded.json next to the cases lists wrong answers left out after a hand audit, with reasons.
-  const exclusionsFile = join(dirname(values.cases), "excluded.json")
-  const excluded = existsSync(exclusionsFile) ? (JSON.parse(await readFile(exclusionsFile, "utf8")) as Exclusion[]) : []
-  const items = plan(cases, operatorList(values.operators), excluded)
+  const only = operatorList(values.operators)
+  const cases = await readCases(values.cases, wholeNumber("limit", values.limit, 1))
+  const excluded = await readExclusions(values.cases, cases, only)
+  const items = plan(cases, only, excluded)
 
   if (command === "plan") {
     const counts = new Map<string, number>()
     for (const item of items) counts.set(item.operator, (counts.get(item.operator) ?? 0) + 1)
-    process.stdout.write(`${cases.length} cases, ${items.length} answers to judge\n`)
-    for (const [op, n] of counts) process.stdout.write(`  ${op.padEnd(9)} ${n}\n`)
+    const out = [`${cases.length} cases, ${items.length} answers to judge`, ...[...counts].map(([op, n]) => `  ${op.padEnd(9)} ${n}`)]
     if (!values.show) {
-      for (const item of items.slice(0, 12)) if (item.kind !== "original") process.stdout.write(`  ${item.caseId} ${item.operator}: ${item.change}\n`)
-      return 0
+      for (const item of items.slice(0, 12)) if (item.kind !== "original") out.push(`  ${item.caseId} ${item.operator}: ${item.change}`)
+    } else {
+      // --show prints every changed answer in full, for the hand audit before any judge runs.
+      const references = new Map(cases.map((c) => [c.id, c.reference]))
+      for (const item of items) {
+        if (item.kind === "original") continue
+        out.push("", `[${item.caseId}] ${item.kind} ${item.operator}: ${item.change}`, `  reference: ${references.get(item.caseId)}`, `  answer:    ${item.text}`)
+      }
     }
-    // --show prints every changed answer in full, for the hand audit before any judge runs.
-    const references = new Map(cases.map((c) => [c.id, c.reference]))
-    for (const item of items) {
-      if (item.kind === "original") continue
-      process.stdout.write(`\n[${item.caseId}] ${item.kind} ${item.operator}: ${item.change}\n  reference: ${references.get(item.caseId)}\n  answer:    ${item.text}\n`)
-    }
+    process.stdout.write(`${out.join("\n")}\n`)
     return 0
   }
 
-  if (!values.judge) throw new Error("run needs --judge judge.json")
-  const judge = JSON.parse(await readFile(values.judge, "utf8")) as JudgeConfig
+  if (!values.judge) throw new UsageError("run needs --judge judge.json")
+  const judge = validateJudge(JSON.parse(await readFile(values.judge, "utf8")), values.judge)
+  const gate = {
+    maxFalsePass: share("max-false-pass", values["max-false-pass"]),
+    minOriginalPass: share("min-original-pass", values["min-original-pass"]),
+    maxUnreadable: share("max-unreadable", values["max-unreadable"]),
+  }
+  const repeats = wholeNumber("repeats", values.repeats, 1) ?? 1
+  const concurrency = wholeNumber("concurrency", values.concurrency, 1) ?? 4
   const out = values.out ?? join("runs", judge.name)
   await mkdir(out, { recursive: true })
   const judged = await judgeAll(judge, cases, items, {
-    repeats: Number(values.repeats),
-    concurrency: Number(values.concurrency),
+    repeats,
+    concurrency,
     cacheDir: join("runs", "cache", judge.name),
     onProgress: (done, total) => {
       if (done % 10 === 0 || done === total) process.stderr.write(`\r${judge.name}: ${done}/${total}`)
@@ -101,15 +90,15 @@ async function main(argv: string[]): Promise<number> {
   await writeFile(join(out, "report.md"), markdown)
   process.stdout.write(markdown)
 
-  const limit = Number(values["max-false-pass"])
-  const worst = report.rows.filter((r) => r.kind === "wrong" && r.rate > limit)
-  return worst.length ? 1 : 0
+  const problems = gateProblems(report, gate)
+  process.stderr.write(problems.length ? `gate: FAIL\n${problems.map((p) => `  ${p}`).join("\n")}\n` : "gate: pass\n")
+  return problems.length ? 1 : 0
 }
 
-main(process.argv.slice(2)).then(
-  (code) => process.exit(code),
-  (err: unknown) => {
-    process.stderr.write(`judge-mutants: ${err instanceof Error ? err.message : String(err)}\n`)
-    process.exit(2)
-  },
-)
+// Exit only after the output has drained: a slow pipe must still get every line.
+const exit = (code: number) => process.stdout.write("", () => process.exit(code))
+
+main(process.argv.slice(2)).then(exit, (err: unknown) => {
+  process.stderr.write(`judge-mutants: ${err instanceof Error ? err.message : String(err)}\n`)
+  exit(2)
+})

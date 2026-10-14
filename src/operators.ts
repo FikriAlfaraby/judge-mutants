@@ -1,4 +1,4 @@
-import { amounts, bumpNumber, digitsOf, entities, isGreeting, isIndonesian, isMessage, isSignOff, numberValue, numbers, sentences, splice, words } from "./text.ts"
+import { amounts, bumpNumber, entities, isGreeting, isIndonesian, isMessage, isSignOff, jsonStrings, numberValue, numbers, sameValue, scaleOf, sentences, splice, wholeWords, words } from "./text.ts"
 import type { Span } from "./text.ts"
 
 /** Wrong answers a judge must fail, and controls (same meaning, new form) it must still pass. */
@@ -56,24 +56,37 @@ type Operator = (input: MutateInput) => Mutation | null
 
 const YEAR = /^(1[5-9]\d\d|20\d\d)$/
 
+/** Every value the reference states, as numbers: "1500000000", "1,5 miliar" and "40%" all count. */
+function referenceValues(reference: string): number[] {
+  return [...numbers(reference).map((n) => numberValue(n.text)), ...amounts(reference).map((a) => a.value)]
+}
+
 /** A number the reference also states: 30 -> 40, 1.500.000 -> 1.600.000. Years are left to `date`. */
 function wrongNumber({ answer, reference }: MutateInput): Mutation | null {
-  const wanted = new Set(numbers(reference).map((n) => digitsOf(n.text)))
-  let target: Span | undefined = numbers(answer).find((n) => wanted.has(digitsOf(n.text)) && !YEAR.test(n.text))
-  let attached = false
+  const wanted = referenceValues(reference)
+  const isWanted = (value: number) => wanted.some((v) => sameValue(v, value))
+  let target: Span | undefined = numbers(answer).find((n) => !YEAR.test(n.text) && isWanted(numberValue(n.text)))
+  let copies: Span[] = []
   if (!target) {
     // The same amount in another notation: the reference says 1500000000, the answer "1,5 miliar".
-    const values = numbers(reference).map((n) => numberValue(n.text))
-    target = amounts(answer).find((a) => values.some((v) => Math.abs(v - a.value) < 1e-6 * Math.max(1, v)))
-    attached = true
+    const found = amounts(answer).filter((a) => isWanted(a.value))
+    target = found[0]
+    copies = found.filter((a) => target && sameValue(a.value, (target as typeof a).value))
   }
   if (!target) return null
   let replacement = bumpNumber(target.text)
   // Never bump onto another true value from the reference.
-  for (let i = 0; i < 5 && wanted.has(digitsOf(replacement)); i += 1) replacement = bumpNumber(replacement)
-  // An amount can be glued to its scale word ("1.5bn"), so it is replaced in place, not as a token.
-  const text = attached ? splice(answer, target, replacement) : replaceAllToken(answer, target.text, replacement)
+  for (let i = 0; i < 5 && isWanted(numberValue(replacement)); i += 1) replacement = bumpNumber(replacement)
+  // An amount can be glued to its scale word ("1.5bn"), so each copy is replaced in place, last first.
+  const text = copies.length
+    ? copies.reduceRight((t, a) => splice(t, a, bumpTo(a.text, target.text, replacement)), answer)
+    : replaceAllToken(answer, target.text, replacement)
   return { operator: "number", kind: "wrong", text, change: `${target.text} -> ${replacement}` }
+}
+
+/** A copy written like the target moves the same way; a copy in another notation moves by itself. */
+function bumpTo(copy: string, target: string, replacement: string): string {
+  return copy === target ? replacement : bumpNumber(copy)
 }
 
 const EN_REMOVE: [RegExp, string][] = [
@@ -104,32 +117,33 @@ const ID_INSERT: [RegExp, string][] = [
  */
 function negation({ answer, reference }: MutateInput): Mutation | null {
   const rules = isIndonesian(answer) ? [...ID_REMOVE, ...ID_INSERT] : [...EN_REMOVE, [EN_INSERT, "$1 not"] as [RegExp, string]]
-  const lower = answer.toLowerCase()
-  const fact = reference.toLowerCase().replace(/[.,;]+$/, "").trim()
-  if (fact && lower.includes(fact)) {
+  const fact = reference.replace(/[.,;]+$/, "").trim()
+  const quoted = wholeWords(answer, fact)
+  if (fact && quoted.length > 0) {
     // The answer states the fact word for word: negate only the verb that governs it, either just
     // before it in the same clause ("was the first recipient of the Nobel Prize") or just after it
     // when the fact is the subject ("Computational complexity theory is a branch ..."). A comma,
-    // bracket or relative pronoun in between means another clause, so nothing is negated.
-    for (let at = lower.indexOf(fact); at >= 0; at = lower.indexOf(fact, at + 1)) {
-      const before = answer.slice(Math.max(0, at - 80), at)
+    // bracket, relative pronoun or sentence end in between means another clause: nothing is negated.
+    const all = sentences(answer)
+    for (const { start: at, end: factEnd } of quoted) {
+      const sentence = all.find((x) => x.start <= at && at < x.end) ?? { start: 0, end: answer.length }
+      const before = answer.slice(Math.max(sentence.start, at - 80), at)
       const clause = before.split(/[,;:()[\]]|\b(?:who|which|that|whose|where|yang)\b/i).pop() ?? ""
       const clauseStart = at - clause.length
       for (const [re, to] of rules) {
-        const all = [...clause.matchAll(new RegExp(re.source, `${re.flags.replace("g", "")}g`))]
-        const m = all[all.length - 1]
+        const matches = [...clause.matchAll(new RegExp(re.source, `${re.flags.replace("g", "")}g`))]
+        const m = matches[matches.length - 1]
         if (!m || m.index === undefined || clause.slice(m.index).split(/\s+/).length > 9) continue
         const start = clauseStart + m.index
         const fixed = m[0].replace(re, to)
         return { operator: "negation", kind: "wrong", text: splice(answer, { start, end: start + m[0].length }, fixed), change: `${m[0]} -> ${fixed}` }
       }
-      const after = /^\s*(\S+\s+){0,1}?/.exec(answer.slice(at + fact.length))
-      const tail = answer.slice(at + fact.length, at + fact.length + 40)
-      if (after && !/^\s*[,;:()[\]]/.test(tail)) {
+      const tail = answer.slice(factEnd, Math.min(sentence.end, factEnd + 40))
+      if (!/^\s*[,;:()[\]]/.test(tail)) {
         for (const [re, to] of rules) {
           const m = re.exec(tail)
           if (!m || m.index > 12) continue
-          const start = at + fact.length + m.index
+          const start = factEnd + m.index
           const fixed = m[0].replace(re, to)
           return { operator: "negation", kind: "wrong", text: splice(answer, { start, end: start + m[0].length }, fixed), change: `${m[0]} -> ${fixed}` }
         }
@@ -162,11 +176,11 @@ function swapEntity({ answer, reference, pool, distractors, seed }: MutateInput)
   // (a JSON object of fields) are long too, but the names inside them are fair game.
   const structured = /^[[{]/.test(ref)
   if (!structured && ref.split(/\s+/).length > 5) return null
-  const quoted = answer.toLowerCase().indexOf(ref)
-  const target =
-    quoted >= 0 && /^\p{Lu}/u.test(answer.slice(quoted))
-      ? { start: quoted, end: quoted + ref.length, text: answer.slice(quoted, quoted + ref.length) }
-      : entities(answer).find((e) => ref.includes(e.text.toLowerCase()) || e.text.toLowerCase().includes(ref))
+  // A name counts when it is one of the reference's values, word for word: "Are" is not in "areas".
+  const values = structured ? jsonStrings(reference) : [reference.replace(/[.,;]+$/, "").trim()]
+  const names = (e: Span) => values.some((v) => wholeWords(v, e.text).length > 0 || wholeWords(e.text, v).length > 0)
+  const [quoted] = structured ? [] : wholeWords(answer, values[0] ?? "")
+  const target = quoted && /^\p{Lu}/u.test(quoted.text) ? quoted : entities(answer).find(names)
   if (!target) return null
   const taken = `${answer} ${reference}`.toLowerCase()
   const fits = (p: string) => p !== target.text && /^[A-Z0-9]/.test(p) && !taken.includes(p.toLowerCase()) && !ref.includes(p.toLowerCase())
@@ -212,14 +226,24 @@ const UNITS: [string, string][] = [
   ["bulan", "tahun"],
 ]
 
-/** A unit the answer states, swapped for a different one: juta -> miliar, km -> mi. */
-function wrongUnit({ answer }: MutateInput): Mutation | null {
+/**
+ * A unit the answer states, swapped for a different one: juta -> miliar, km -> mi. Only where the
+ * number it measures is one the reference states, so the change hits the fact and nothing else.
+ */
+function wrongUnit({ answer, reference }: MutateInput): Mutation | null {
+  const wanted = referenceValues(reference)
   let best: { at: number; from: string; to: string } | null = null
   for (const [a, b] of UNITS) {
     for (const [from, to] of [[a, b], [b, a]] as const) {
       // Only a unit that measures a number ("1,5 miliar", "10 km"), never a word like "Seven Years' War".
-      const m = new RegExp(`(?<=\\d[\\d.,]*\\s?)${from}(?![\\p{L}'’])`, "iu").exec(answer)
-      if (m && (!best || m.index < best.at)) best = { at: m.index, from: m[0], to: matchCase(m[0], to) }
+      for (const m of answer.matchAll(new RegExp(`(\\d[\\d.,]*)\\s?(${from})(?![\\p{L}'’])`, "giu"))) {
+        const value = numberValue((m[1] ?? "").replace(/[.,]$/, ""))
+        const scaled = value * (scaleOf(m[2] ?? "") ?? 1)
+        if (!wanted.some((v) => sameValue(v, value) || sameValue(v, scaled))) continue
+        const at = m.index + m[0].length - (m[2] ?? "").length
+        if (!best || at < best.at) best = { at, from: m[2] ?? "", to: matchCase(m[2] ?? "", to) }
+        break
+      }
     }
   }
   if (!best) return null
@@ -257,12 +281,25 @@ function shiftDate({ answer, reference }: MutateInput): Mutation | null {
   // Relative times: a timeline the reference states as "this month" becomes "next month".
   for (const [from, to] of RELATIVE) {
     const m = new RegExp(`\\b${from}\\b`, "i").exec(answer)
-    if (m) {
+    const said = m?.[0].toLowerCase() ?? ""
+    if (m && (ref.includes(said) || ref.includes(SAME_TIME[said] ?? "\u0000"))) {
       const shifted = matchCase(m[0], to)
       return { operator: "date", kind: "wrong", text: splice(answer, { start: m.index, end: m.index + m[0].length }, shifted), change: `${m[0]} -> ${shifted}` }
     }
   }
   return null
+}
+
+/** The same time in the other language: an English draft of an Indonesian lead says "this month". */
+const SAME_TIME: Record<string, string> = {
+  "this week": "minggu ini",
+  "this month": "bulan ini",
+  "this year": "tahun ini",
+  today: "hari ini",
+  "minggu ini": "this week",
+  "bulan ini": "this month",
+  "tahun ini": "this year",
+  "hari ini": "today",
 }
 
 const RELATIVE: [string, string][] = [
@@ -331,12 +368,15 @@ function filler({ answer }: MutateInput): Mutation | null {
   const all = sentences(answer)
   const last = all[all.length - 1]
   const before = all[all.length - 2]
+  const ended = (t: string) => (/[.!?…"'”’)\]]$/.test(t) ? "" : ".")
   if (last && before && isSignOff(last.text)) {
     const extra = indonesian ? "Terima kasih ya." : "Thank you."
-    return { operator: "filler", kind: "control", text: splice(answer, { start: before.end, end: before.end }, ` ${extra}`), change: `added: ${extra}` }
+    const text = splice(answer, { start: before.end, end: before.end }, `${ended(before.text)} ${extra}`)
+    return { operator: "filler", kind: "control", text, change: `added: ${extra}` }
   }
   const extra = indonesian ? "Semoga membantu ya." : "I hope this helps."
-  return { operator: "filler", kind: "control", text: `${answer.trimEnd()} ${extra}`, change: `added: ${extra}` }
+  const base = answer.trimEnd()
+  return { operator: "filler", kind: "control", text: `${base}${ended(base)} ${extra}`, change: `added: ${extra}` }
 }
 
 const CONNECTOR = /^(also|this|it|they|he|she|then|so|therefore|which|however|but|and|ini|itu|lalu|jadi|tapi|dan|dia|mereka)\b/i

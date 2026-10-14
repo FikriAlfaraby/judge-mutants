@@ -30,6 +30,8 @@ export interface Report {
   falsePasses: Example[]
   /** Share of items whose verdict changed between repeats (0 with one repeat). */
   flaky: number
+  /** Every reply of the run, counted or not, and how many could not be read. */
+  replies: { total: number; unreadable: number }
 }
 
 /**
@@ -78,6 +80,7 @@ export function summarize(judge: string, judged: Judged[]): Report {
     rows: ordered,
     falsePasses,
     flaky,
+    replies: { total: judged.length, unreadable: judged.filter((j) => j.verdict === "unreadable").length },
   }
 }
 

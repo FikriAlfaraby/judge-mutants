@@ -12,6 +12,9 @@
     "path": "grounded.verdict",
     "pass": [
       "pass"
+    ],
+    "fail": [
+      "fail"
     ]
   }
 }

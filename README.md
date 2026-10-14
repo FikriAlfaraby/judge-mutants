@@ -15,8 +15,11 @@ way, and asks your judge again.
   or with a harmless sentence at the end.
 
 It reports, per kind of change, how many wrong answers the judge passed and how many controls it
-failed, with the judge's own reasons. Exit code 1 above a threshold, so it can gate CI when someone
-edits a judge prompt.
+failed, with the judge's own reasons. It exits with code 1 when the gate fails, so it can guard CI
+when someone edits a judge prompt: a kind of change passes more often than `--max-false-pass`
+(0.1), the judge passes fewer than `--min-original-pass` (0.8) of the untouched answers, more than
+`--max-unreadable` (0.1) of its replies cannot be read, or nothing was measured at all. Code 2 means
+bad input: a duplicate case id, a stale exclusion, a judge file with a broken rule.
 
 ```bash
 judge-mutants plan --cases cases.jsonl              # what will be asked, no model calls
@@ -25,9 +28,10 @@ JM_KEY=... judge-mutants run --cases cases.jsonl --judge judges/strict.luna.json
 
 A case is one line of JSON: `{"id", "answer", "reference", "vars": {...}, "distractors": [...]}`.
 A judge is a JSON file: endpoint and model (any OpenAI-compatible API), the prompt with
-`{{answer}}`, `{{reference}}` and your own slots, and how to read the verdict (a JSON path, a score
-threshold, or a pair of regular expressions). Replies the reading rule cannot parse are counted as
-unreadable, never guessed.
+`{{answer}}`, `{{reference}}` and your own slots, and how to read the verdict (a JSON path with the
+values that mean pass and fail, a score threshold, or a pair of regular expressions). A reply the
+rule cannot read is counted as unreadable, never guessed: a label on neither list, two JSON objects
+that disagree, both regular expressions matching, or a reply cut off at the token limit.
 
 ## Method, and why the numbers can be trusted
 
@@ -40,8 +44,9 @@ unreadable, never guessed.
 - Judge prompts are copied verbatim from the tools teams use (promptfoo's `llm-rubric` and
   `factuality`, OpenAI's closed-QA prompt as shipped in promptfoo; MIT), plus one strict prompt of
   my own for comparison.
-- Every reply is cached with its request, so a run can be re-read and re-scored without paying for
-  it twice.
+- Every reply is stored next to its verdict (`runs/*/judged.jsonl`), so the published results can
+  be re-scored without calling a model; a test re-reads all of them on every commit. Locally,
+  complete replies are also cached, written once and atomically, so a rerun never pays twice.
 
 ## Results, 14 Oct 2026
 

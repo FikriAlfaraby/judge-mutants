@@ -122,9 +122,11 @@ test("amounts in another notation are still the same fact", () => {
   const id = run({ answer: "Budget 1,5 miliar IDR, target beli bulan ini.", reference: facts, pool: [], seed: "a" })
   assert.equal(id.number?.change, "1,5 -> 1,6")
   assert.equal(id.date?.change, "bulan ini -> bulan depan")
-  const en = run({ answer: "Budget of IDR 15,000,000, this week.", reference: '{"budgetIDR": 15000000}', pool: [], seed: "b" })
+  const en = run({ answer: "Budget of IDR 15,000,000, this week.", reference: '{"budgetIDR": 15000000, "timeline": "minggu ini"}', pool: [], seed: "b" })
   assert.equal(en.number?.change, "15,000,000 -> 16,000,000")
-  assert.equal(en.date?.change, "this week -> next week")
+  assert.equal(en.date?.change, "this week -> next week", "the English draft of an Indonesian timeline")
+  const noTime = run({ answer: "Budget of IDR 15,000,000, this week.", reference: '{"budgetIDR": 15000000}', pool: [], seed: "b" })
+  assert.equal(noTime.date, undefined, "a time the reference never states is not a fact to change")
 })
 
 test("domain terms flip only through the case's own list", () => {
@@ -159,4 +161,35 @@ test("a message keeps its greeting, order and sign-off in every control", () => 
 test("Indonesian is recognised from common words, punctuation or not", () => {
   assert.equal(isIndonesian("Bagaimana kalau kita jadwalkan obrolan singkat untuk membahas kebutuhan properti Anda? Salam, Budi"), true)
   assert.equal(isIndonesian("Dan Brown wrote it in the U.S."), false)
+})
+
+test("negation stays in the fact's own sentence and never matches inside a longer word", () => {
+  const ankara = run({ answer: "The museum was founded in 1990. Ankara is the capital of Turkey.", reference: "Ankara", pool: [], seed: "n1" })
+  assert.equal(ankara.negation?.text, "The museum was founded in 1990. Ankara is not the capital of Turkey.")
+  const rome = run({ answer: "Romeo is a play, and Rome is the capital of Italy.", reference: "Rome", pool: [], seed: "n2" })
+  assert.equal(rome.negation?.text, "Romeo is a play, and Rome is not the capital of Italy.")
+})
+
+test("a name is matched against the reference's values, never its JSON keys", () => {
+  const m = run({ answer: "Are you still looking to rent in BSD?", reference: '{"areas": ["BSD"], "intent": "rent"}', pool: [], distractors: ["Kemang"], seed: "e" })
+  assert.equal(m.entity?.text, "Are you still looking to rent in Kemang?")
+})
+
+test("numbers are matched by value, not by their digits", () => {
+  const m = run({ answer: "The 15 files take 1.5 MB.", reference: "1.5", pool: [], seed: "v" })
+  assert.equal(m.number?.text, "The 15 files take 1.6 MB.")
+})
+
+test("a unit changes only where its number is a value the reference states", () => {
+  assert.equal(run({ answer: "The 5 km road opened in Paris.", reference: "Paris", pool: [], seed: "u" }).unit, undefined)
+  assert.equal(run({ answer: "The road is 5 km long.", reference: "5 km", pool: [], seed: "u" }).unit?.change, "km -> mi")
+})
+
+test("every copy of a changed amount moves, so no true copy is left behind", () => {
+  const m = run({ answer: "Budget 1,5 miliar, ya, 1,5 miliar.", reference: '{"budgetIDR": 1500000000}', pool: [], seed: "c" })
+  assert.equal(m.number?.text, "Budget 1,6 miliar, ya, 1,6 miliar.")
+})
+
+test("the harmless sentence is never glued onto an answer without an ending", () => {
+  assert.equal(run({ answer: "30", reference: "30", pool: [], seed: "f" }).filler?.text, "30. I hope this helps.")
 })

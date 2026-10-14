@@ -196,6 +196,45 @@ export interface Amount extends Span {
   value: number
 }
 
+/** The factor a scale word stands for ("juta" -> 1e6), or undefined for any other word. */
+export function scaleOf(word: string): number | undefined {
+  return SCALE[word.toLowerCase()]
+}
+
+/** Two numbers are the same value, allowing for floating-point noise. */
+export function sameValue(a: number, b: number): boolean {
+  return Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(a), Math.abs(b))
+}
+
+export function escapeRegex(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+}
+
+/** Every place `phrase` appears in `text` as whole words, ignoring case: "Rome" is not in "Romeo". */
+export function wholeWords(text: string, phrase: string): Span[] {
+  if (!phrase) return []
+  const re = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegex(phrase)}(?![\\p{L}\\p{N}])`, "giu")
+  return [...text.matchAll(re)].map((m) => ({ start: m.index, end: m.index + m[0].length, text: m[0] }))
+}
+
+/** Every string value inside a JSON text, keys left out; a text that is not JSON gives itself. */
+export function jsonStrings(text: string): string[] {
+  let parsed: unknown
+  try {
+    parsed = JSON.parse(text)
+  } catch {
+    return [text]
+  }
+  const out: string[] = []
+  const walk = (v: unknown): void => {
+    if (typeof v === "string") out.push(v)
+    else if (Array.isArray(v)) v.forEach(walk)
+    else if (v && typeof v === "object") Object.values(v).forEach(walk)
+  }
+  walk(parsed)
+  return out
+}
+
 /** Numbers followed by a scale word ("1,5 miliar", "Rp15 juta", "1.5bn"), with their value. */
 export function amounts(text: string): Amount[] {
   const out: Amount[] = []
