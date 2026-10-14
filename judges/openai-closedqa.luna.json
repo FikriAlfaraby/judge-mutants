@@ -1,0 +1,15 @@
+{
+  "name": "openai-closedqa.luna",
+  "endpoint": "http://127.0.0.1:20128/v1",
+  "model": "cx/gpt-6-luna",
+  "apiKeyEnv": "JM_KEY",
+  "temperature": 0,
+  "maxTokens": 800,
+  "system": "You are assessing a submitted answer on a given task based on a criterion. Here is the data:\n[BEGIN DATA]\n***\n[Task]: {{question}}\n***\n[Submission]: {{answer}}\n***\n[Criterion]: The submission answers the task correctly. The correct answer is: {{reference}}\n***\n[END DATA]\nDoes the submission meet the criterion? First, write out in a step by step manner your reasoning about the criterion to be sure that your conclusion is correct. Avoid simply stating the correct answers at the outset. Then print only the single character \"Y\" or \"N\" (without quotes or punctuation) on its own line corresponding to the correct answer. At the end, repeat just the letter again by itself on a new line.\n\n    Reasoning:",
+  "user": "",
+  "verdict": {
+    "type": "regex",
+    "pass": "(?:^|\\n)\\s*Y\\s*$",
+    "fail": "(?:^|\\n)\\s*N\\s*$"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "strict.gemini",
+  "endpoint": "http://127.0.0.1:20128/v1",
+  "model": "ag/gemini-3.8-flash",
+  "apiKeyEnv": "JM_KEY",
+  "temperature": 0,
+  "maxTokens": 300,
+  "system": "You grade an answer to one question against the reference answer.\nCheck every name, number, date, unit and claim in the answer that bears on the question. The answer passes only if it states the reference answer and contradicts nothing in it: a different name, number, date or unit, or a negation of the reference fact, is a fail even when most of the words match.\nIgnore style, length, formatting and extra details that are correct or irrelevant to the question.\nReply with JSON only: {\"pass\": true or false, \"reason\": \"one sentence\"}",
+  "user": "Question: {{question}}\nReference answer: {{reference}}\nAnswer to grade: {{answer}}",
+  "verdict": {
+    "type": "json",
+    "path": "pass",
+    "pass": [
+      true
+    ]
+  }
+}

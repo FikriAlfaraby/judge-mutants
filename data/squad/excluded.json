@@ -1,0 +1,12 @@
+[
+  {
+    "caseId": "squad-57296d57",
+    "operator": "negation",
+    "reason": "The sentence already says 'has no positive divisors'; inserting 'not' gives 'has not no', a garbled double negative rather than a clean wrong answer."
+  },
+  {
+    "caseId": "squad-572f5533",
+    "operator": "entity",
+    "reason": "The reference is a category ('Swiss canton'); the only same-kind distractors are specific cantons, and 'the Ticino of Graubünden' reads as nonsense rather than a plausible wrong answer."
+  }
+]

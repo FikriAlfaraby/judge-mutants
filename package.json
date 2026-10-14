@@ -1,0 +1,32 @@
+{
+  "name": "judge-mutants",
+  "version": "0.1.0",
+  "description": "How often does your LLM judge pass a wrong answer? Mutation testing for LLM-as-a-judge.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Fikri Alfaraby <fikrialfaraby04@gmail.com>",
+  "bin": {
+    "judge-mutants": "src/cli.ts"
+  },
+  "engines": {
+    "node": ">=23.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FikriAlfaraby/judge-mutants.git"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "check": "npm run typecheck && npm run lint && npm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^26.6.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0",
+    "typescript": "~6.0",
+    "typescript-eslint": "^8.71.2"
+  }
+}

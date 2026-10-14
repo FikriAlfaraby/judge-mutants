@@ -1,0 +1,20 @@
+{
+  "name": "promptfoo-factuality.gemini",
+  "endpoint": "http://127.0.0.1:20128/v1",
+  "model": "ag/gemini-3.8-flash",
+  "apiKeyEnv": "JM_KEY",
+  "temperature": 0,
+  "maxTokens": 500,
+  "system": "You are a precise factuality evaluator that compares a submitted answer to an expert answer. \n\nYour task is to analyze the factual content while ignoring differences in style, grammar, or punctuation.\nYou must categorize the submission into one of these options:\n\n(A) The submitted answer is a subset of the expert answer and is fully consistent with it.\n(B) The submitted answer is a superset of the expert answer and is fully consistent with it.\n(C) The submitted answer contains all the same details as the expert answer.\n(D) There is a disagreement between the submitted answer and the expert answer.\n(E) The answers differ, but these differences don't matter from the perspective of factuality.\n\nRespond ONLY with a JSON object in this format:\n{\n  \"category\": \"[LETTER]\",\n  \"reason\": \"[DETAILED EXPLANATION]\"\n}\n\n- The \"category\" must be a single letter A, B, C, D, or E.\n- Provide a clear, detailed explanation in the \"reason\" field.\n- Your response must be valid JSON with no additional text.",
+  "user": "I need you to compare these answers:\n\n<question>\n{{question}}\n</question>\n\n<expert_answer>\n{{reference}}\n</expert_answer>\n\n<submitted_answer>\n{{answer}}\n</submitted_answer>\n\nPlease analyze the factual relationship between these answers according to the categories you've been given.",
+  "verdict": {
+    "type": "json",
+    "path": "category",
+    "pass": [
+      "a",
+      "b",
+      "c",
+      "e"
+    ]
+  }
+}
