@@ -1,0 +1,125 @@
+{
+  "judge": "noref-rubric.luna",
+  "cases": 43,
+  "originals": {
+    "judged": 129,
+    "passed": 122,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 9,
+      "passed": 5,
+      "unreadable": 0,
+      "rate": 0.5555555555555556
+    },
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 6,
+      "passed": 2,
+      "unreadable": 0,
+      "rate": 0.3333333333333333
+    },
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 54,
+      "passed": 9,
+      "unreadable": 0,
+      "rate": 0.16666666666666666
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 40,
+      "passed": 1,
+      "unreadable": 0,
+      "rate": 0.025
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 122,
+      "passed": 121,
+      "unreadable": 0,
+      "rate": 0.9918032786885246
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 122,
+      "passed": 120,
+      "unreadable": 0,
+      "rate": 0.9836065573770492
+    }
+  ],
+  "falsePasses": [
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "The output states that Nikola Tesla was born on 10 July 1857, so the year is 1857."
+    },
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "The output states that Nikola Tesla was born on 10 July 1857."
+    },
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "The output states that Nikola Tesla was born on 10 July 1857, correctly giving the year as 1857."
+    },
+    {
+      "caseId": "squad-5727e6cb",
+      "operator": "number",
+      "change": "40 -> 50",
+      "text": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+      "reason": "The output states that the richest 1% owned 50% of global assets."
+    },
+    {
+      "caseId": "squad-5727e6cb",
+      "operator": "number",
+      "change": "40 -> 50",
+      "text": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+      "reason": "The output directly states that the richest 1% owned 50% of global assets."
+    },
+    {
+      "caseId": "squad-56e16182",
+      "operator": "entity",
+      "change": "Computational complexity theory -> Computability theory",
+      "text": "Computability theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+      "reason": "The output identifies computability theory as the branch concerned with classifying computational problems by difficulty and relating the resulting classes."
+    },
+    {
+      "caseId": "squad-57273a46",
+      "operator": "entity",
+      "change": "Construction -> Engineering",
+      "text": "Engineering is the process of constructing a building or infrastructure.",
+      "reason": "The output directly identifies engineering as the process of constructing a building or infrastructure."
+    },
+    {
+      "caseId": "squad-57273a46",
+      "operator": "entity",
+      "change": "Construction -> Engineering",
+      "text": "Engineering is the process of constructing a building or infrastructure.",
+      "reason": "The output identifies engineering as the process of constructing a building or infrastructure, which answers the question."
+    },
+    {
+      "caseId": "squad-570d2417",
+      "operator": "negation",
+      "change": "is -> is not",
+      "text": "The economy of Victoria is not highly diversified: service sectors including financial and property services, health, education, wholesale, retail, hospitality and manufacturing constitute the majority of employment.",
+      "reason": "The output describes Victoria's economy as primarily service-sector-based, while also noting manufacturing and several major industries, which answers what kind of economy it has."
+    }
+  ],
+  "flaky": 0.05357142857142857
+}

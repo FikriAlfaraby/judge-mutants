@@ -1,0 +1,61 @@
+{
+  "judge": "noref-strict.gemini",
+  "cases": 43,
+  "originals": {
+    "judged": 43,
+    "passed": 41,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 18,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 13,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 3,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 2,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 41,
+      "passed": 41,
+      "unreadable": 0,
+      "rate": 1
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 41,
+      "passed": 40,
+      "unreadable": 0,
+      "rate": 0.975609756097561
+    }
+  ],
+  "falsePasses": [],
+  "flaky": 0
+}

@@ -2,10 +2,10 @@
 // with judge-mutants' strict reading of the same reply. No model is called: a stub provider hands
 // promptfoo the stored reply.
 //
-//   node reread.mjs ../../runs/squad
+//   node reread.mjs ../../runs/squad [out.json]
 //
 // A disagreement means the same judge reply would have scored differently in promptfoo.
-import { readFileSync, existsSync } from "node:fs"
+import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
 
 import promptfoo from "promptfoo"
@@ -47,3 +47,4 @@ for (const r of rows) {
   console.log(`${r.judge.padEnd(27)} ${String(r.replies).padStart(7)} ${String(r.agree).padStart(6)} ${String(r.pfPassOursFail).padStart(18)} ${String(r.pfFailOursPass).padStart(18)} ${String(r.oursUnreadable).padStart(16)}`)
 }
 for (const o of odd) console.log(`\n${o.judge} ${o.caseId} ${o.operator}: ours ${o.ours}, promptfoo ${o.promptfoo}\n  ${JSON.stringify(o.raw).slice(0, 300)}`)
+if (process.argv[3]) writeFileSync(process.argv[3], JSON.stringify({ promptfoo: "0.124.1", rows, disagreements: odd }, null, 2) + "\n")

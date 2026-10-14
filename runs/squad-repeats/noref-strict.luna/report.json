@@ -1,0 +1,83 @@
+{
+  "judge": "noref-strict.luna",
+  "cases": 43,
+  "originals": {
+    "judged": 129,
+    "passed": 107,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 8,
+      "passed": 5,
+      "unreadable": 0,
+      "rate": 0.625
+    },
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 46,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 35,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 6,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 107,
+      "passed": 102,
+      "unreadable": 0,
+      "rate": 0.9532710280373832
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 107,
+      "passed": 98,
+      "unreadable": 0,
+      "rate": 0.9158878504672897
+    }
+  ],
+  "falsePasses": [
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "Nikola Tesla was born in 1857."
+    },
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "Nikola Tesla was born in 1857."
+    },
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "The answer gives Tesla’s birth date as 10 July 1857, so the year is correct."
+    }
+  ],
+  "flaky": 0.08928571428571429
+}

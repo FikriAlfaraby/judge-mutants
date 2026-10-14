@@ -1,0 +1,69 @@
+{
+  "judge": "walead-grounded.gemini",
+  "cases": 12,
+  "originals": {
+    "judged": 12,
+    "passed": 12,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 5,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 10,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 4,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "term",
+      "kind": "wrong",
+      "judged": 10,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "unit",
+      "kind": "wrong",
+      "judged": 3,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 12,
+      "passed": 12,
+      "unreadable": 0,
+      "rate": 1
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 12,
+      "passed": 12,
+      "unreadable": 0,
+      "rate": 1
+    }
+  ],
+  "falsePasses": [],
+  "flaky": 0
+}

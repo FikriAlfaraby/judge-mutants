@@ -1,0 +1,2773 @@
+{
+  "judges": [
+    {
+      "name": "promptfoo-rubric.gemini",
+      "dataset": "squad",
+      "family": "promptfoo-rubric",
+      "label": "promptfoo llm-rubric",
+      "model": "Gemini 3.8 Flash",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 85,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 42,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": [
+        {
+          "caseId": "squad-5725b418",
+          "operator": "reformat",
+          "change": "prefixed \"Answer:\"",
+          "question": "What project put the first Americans into space?",
+          "reference": "Project Mercury",
+          "original": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "answer": "Answer: Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "reason": "The output provides an incoherent, fragmented sentence about Apollo and the Eisenhower administration rather than identifying Project Mercury as the answer to the question, even though Project Mercury is mentioned within a subordinate clause."
+        }
+      ]
+    },
+    {
+      "name": "promptfoo-rubric.luna",
+      "dataset": "squad",
+      "family": "promptfoo-rubric",
+      "label": "promptfoo llm-rubric",
+      "model": "GPT-6 Luna",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 86,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    },
+    {
+      "name": "promptfoo-factuality.gemini",
+      "dataset": "squad",
+      "family": "promptfoo-factuality",
+      "label": "promptfoo factuality",
+      "model": "Gemini 3.8 Flash",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 86,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    },
+    {
+      "name": "promptfoo-factuality.luna",
+      "dataset": "squad",
+      "family": "promptfoo-factuality",
+      "label": "promptfoo factuality",
+      "model": "GPT-6 Luna",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 38,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 33,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 76,
+        "passed": 75,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 17,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 38,
+          "passed": 38,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 38,
+          "passed": 37,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 11,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 3,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [
+        {
+          "caseId": "squad-56e74777",
+          "operator": "original",
+          "change": "",
+          "question": "What is a course of study called?",
+          "reference": "the curriculum.",
+          "original": "Teachers may use a lesson plan to facilitate student learning, providing a course of study which is called the curriculum.",
+          "answer": "Teachers may use a lesson plan to facilitate student learning, providing a course of study which is called the curriculum.",
+          "reason": "The submitted answer includes the correct identification that a course of study is called a curriculum. However, it adds that teachers use a lesson plan to provide that course of study, which conflates a lesson plan with a curriculum: a lesson plan guides instruction for particular lessons, while the curriculum is the broader course of study. Thus, the extra claim is not fully consistent with the "
+        },
+        {
+          "caseId": "squad-5725b418",
+          "operator": "original",
+          "change": "",
+          "question": "What project put the first Americans into space?",
+          "reference": "Project Mercury",
+          "original": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "answer": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "reason": "The submitted answer correctly identifies Project Mercury as the project that put the first Americans in space. However, it adds claims about Apollo, including that it was later dedicated to President John F. Kennedy, which is not a factual detail supported by the expert answer and is inaccurate. The added content therefore prevents the submission from being fully consistent with the expert answer"
+        },
+        {
+          "caseId": "squad-57264684",
+          "operator": "original",
+          "change": "",
+          "question": "Where did the black death originate?",
+          "reference": "the arid plains of Central Asia",
+          "original": "The Black Death is thought to have originated in the arid plains of Central Asia, where it then travelled along the Silk Road, reaching Crimea by 1343.",
+          "answer": "The Black Death is thought to have originated in the arid plains of Central Asia, where it then travelled along the Silk Road, reaching Crimea by 1343.",
+          "reason": "The submitted answer agrees with the expert that the Black Death originated in the arid plains of Central Asia. However, it adds that the disease reached Crimea by 1343, which conflicts with the commonly cited chronology placing its arrival in Crimea around 1346. That added factual claim makes the answers disagree."
+        },
+        {
+          "caseId": "squad-5726d8bd",
+          "operator": "original",
+          "change": "",
+          "question": "What word is the word pharmacy taken from?",
+          "reference": "its root word pharma",
+          "original": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "answer": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "reason": "The submitted answer includes the expert’s core point that the root word is “pharma,” but adds a date claim that the expert answer does not support. The claim that “pharma” was a term used since the 15th–17th centuries is not established by the expert answer and appears to confuse the history of the root with the later history of related words, so the answers are not fully consistent."
+        },
+        {
+          "caseId": "squad-572fac17",
+          "operator": "original",
+          "change": "",
+          "question": "When was the current parliament of Scotland convened?",
+          "reference": "Following a referendum in 1997",
+          "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "answer": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "reason": "The submitted answer adds that the Parliament was convened by the Scotland Act 1998. The Act established the devolved Parliament and set out its powers, but it did not convene it; the Parliament first met in 1999. The reference to the 1997 referendum is consistent with the expert answer, but the added claim is factually inaccurate."
+        }
+      ],
+      "failedControls": [
+        {
+          "caseId": "squad-57267b75",
+          "operator": "filler",
+          "change": "added: I hope this helps.",
+          "question": "What company owns the American Broadcasting Company?",
+          "reference": "The Walt Disney Company",
+          "original": "The American Broadcasting Company (ABC) (stylized in its logo as abc since 1957) is an American commercial broadcast television network that is owned by the Disney–ABC Television Group, a subsidiary of Disney Media Networks division of The Walt Disney Company.",
+          "answer": "The American Broadcasting Company (ABC) (stylized in its logo as abc since 1957) is an American commercial broadcast television network that is owned by the Disney–ABC Television Group, a subsidiary of Disney Media Networks division of The Walt Disney Company. I hope this helps.",
+          "reason": "The submitted answer correctly identifies The Walt Disney Company as the ultimate owner, matching the expert answer. However, it adds a present-tense ownership chain naming Disney–ABC Television Group and the Disney Media Networks division, which is outdated corporate structure information. Thus, the added details do not fully agree with the expert answer’s current ownership identification."
+        }
+      ]
+    },
+    {
+      "name": "openai-closedqa.gemini",
+      "dataset": "squad",
+      "family": "openai-closedqa",
+      "label": "OpenAI closed-QA",
+      "model": "Gemini 3.8 Flash",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 85,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 42,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": [
+        {
+          "caseId": "squad-5725b418",
+          "operator": "reformat",
+          "change": "prefixed \"Answer:\"",
+          "question": "What project put the first Americans into space?",
+          "reference": "Project Mercury",
+          "original": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "answer": "Answer: Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "reason": "Reasoning: 1. The task asks: \"What project put the first Americans into space?\" 2. The correct answer according to the criterion is \"Project Mercury\". 3. The submission provides a garbled fragment of a sentence: \"Answer: Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F."
+        }
+      ]
+    },
+    {
+      "name": "openai-closedqa.luna",
+      "dataset": "squad",
+      "family": "openai-closedqa",
+      "label": "OpenAI closed-QA",
+      "model": "GPT-6 Luna",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 86,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    },
+    {
+      "name": "strict.gemini",
+      "dataset": "squad",
+      "family": "strict",
+      "label": "Strict (mine)",
+      "model": "Gemini 3.8 Flash",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 86,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    },
+    {
+      "name": "strict.luna",
+      "dataset": "squad",
+      "family": "strict",
+      "label": "Strict (mine)",
+      "model": "GPT-6 Luna",
+      "reference": true,
+      "originals": {
+        "judged": 43,
+        "passed": 43,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 39,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 86,
+        "passed": 86,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 19,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 43,
+          "passed": 43,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    },
+    {
+      "name": "noref-rubric.gemini",
+      "dataset": "squad",
+      "family": "noref-rubric",
+      "label": "promptfoo llm-rubric, no answer key",
+      "model": "Gemini 3.8 Flash",
+      "reference": false,
+      "originals": {
+        "judged": 43,
+        "passed": 41,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 36,
+        "passed": 2,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 82,
+        "passed": 82,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 18,
+          "passed": 1,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 41,
+          "passed": 41,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 41,
+          "passed": 41,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 13,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 3,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 1,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [
+        {
+          "caseId": "squad-5727e6cb",
+          "operator": "number",
+          "change": "40 -> 50",
+          "question": "What percentage of global assets does the richest 1% of people have?",
+          "reference": "40%",
+          "original": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 40% of global assets in the year 2000.",
+          "answer": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+          "reason": "The output directly answers the question by stating that the richest 1% owned 50% of global assets according to a study by the World Institute for Development Economics Research."
+        },
+        {
+          "caseId": "squad-57285ed5",
+          "operator": "entity",
+          "change": "Yuán Cháo -> Sòng Cháo",
+          "question": "What is the Chinese name for the Yuan dynasty?",
+          "reference": "Yuán Cháo",
+          "original": "The Yuan dynasty (Chinese: 元朝; pinyin: Yuán Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+          "answer": "The Yuan dynasty (Chinese: 元朝; pinyin: Sòng Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+          "reason": "The output provides the Chinese name for the Yuan dynasty in Chinese characters (元朝 and officially 大元), although it contains a typo in the pinyin for the former."
+        }
+      ],
+      "rejectedOriginals": [
+        {
+          "caseId": "squad-5726d8bd",
+          "operator": "original",
+          "change": "",
+          "question": "What word is the word pharmacy taken from?",
+          "reference": "its root word pharma",
+          "original": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "answer": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "reason": "The output states that 'pharmacy' is derived from 'pharma', which is historically incorrect. Etymologically, 'pharmacy' derives from Old French 'farmacie', Latin 'pharmacia', and ultimately Ancient Greek 'pharmakeia' / 'pharmakon'. 'Pharma' is a modern abbreviation."
+        },
+        {
+          "caseId": "squad-572fac17",
+          "operator": "original",
+          "change": "",
+          "question": "When was the current parliament of Scotland convened?",
+          "reference": "Following a referendum in 1997",
+          "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "answer": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "reason": "The output does not correctly state when the current Scottish Parliament was convened (which occurred in 1999, specifically May 12, 1999); it only mentions the 1997 referendum and the Scotland Act 1998."
+        }
+      ],
+      "failedControls": []
+    },
+    {
+      "name": "noref-rubric.luna",
+      "dataset": "squad",
+      "family": "noref-rubric",
+      "label": "promptfoo llm-rubric, no answer key",
+      "model": "GPT-6 Luna",
+      "reference": false,
+      "originals": {
+        "judged": 43,
+        "passed": 40,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 36,
+        "passed": 7,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 80,
+        "passed": 80,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 18,
+          "passed": 4,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 40,
+          "passed": 40,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 40,
+          "passed": 40,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 13,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 3,
+          "passed": 2,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 1,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [
+        {
+          "caseId": "squad-56df9e28",
+          "operator": "date",
+          "change": "1856 -> 1857",
+          "question": "In what year was Nikola Tesla born? ",
+          "reference": "1856",
+          "original": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1856 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+          "answer": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+          "reason": "The output states that Nikola Tesla was born on 10 July 1857, so the year is 1857."
+        },
+        {
+          "caseId": "squad-56e16182",
+          "operator": "entity",
+          "change": "Computational complexity theory -> Computability theory",
+          "question": "What branch of theoretical computer science deals with broadly classifying computational problems by difficulty and class of relationship?",
+          "reference": "Computational complexity theory",
+          "original": "Computational complexity theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+          "answer": "Computability theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+          "reason": "The output identifies computability theory as the branch concerned with classifying computational problems by difficulty and relating the resulting classes."
+        },
+        {
+          "caseId": "squad-57273a46",
+          "operator": "entity",
+          "change": "Construction -> Engineering",
+          "question": "What is the process of constructing a building or infrastructure?",
+          "reference": "Construction",
+          "original": "Construction is the process of constructing a building or infrastructure.",
+          "answer": "Engineering is the process of constructing a building or infrastructure.",
+          "reason": "The output directly identifies engineering as the process of constructing a building or infrastructure."
+        },
+        {
+          "caseId": "squad-5727aa41",
+          "operator": "entity",
+          "change": "John Harvard -> Increase Mather",
+          "question": "What individual is the school named after?",
+          "reference": "John Harvard",
+          "original": "Established originally by the Massachusetts legislature and soon thereafter named for John Harvard (its first benefactor), Harvard is the United States' oldest institution of higher learning, and the Harvard Corporation (formally, the President and Fellows of Harvard College) is its first chartered corporation.",
+          "answer": "Established originally by the Massachusetts legislature and soon thereafter named for Increase Mather (its first benefactor), Harvard is the United States' oldest institution of higher learning, and the Harvard Corporation (formally, the President and Fellows of Harvard College) is its first chartered corporation.",
+          "reason": "The output states that Harvard was named for Increase Mather, directly answering the question."
+        },
+        {
+          "caseId": "squad-5727e6cb",
+          "operator": "number",
+          "change": "40 -> 50",
+          "question": "What percentage of global assets does the richest 1% of people have?",
+          "reference": "40%",
+          "original": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 40% of global assets in the year 2000.",
+          "answer": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+          "reason": "The output states that the richest 1% owned 50% of global assets."
+        },
+        {
+          "caseId": "squad-57285ed5",
+          "operator": "entity",
+          "change": "Yuán Cháo -> Sòng Cháo",
+          "question": "What is the Chinese name for the Yuan dynasty?",
+          "reference": "Yuán Cháo",
+          "original": "The Yuan dynasty (Chinese: 元朝; pinyin: Yuán Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+          "answer": "The Yuan dynasty (Chinese: 元朝; pinyin: Sòng Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+          "reason": "The output gives the Chinese name as 元朝, though its pinyin is incorrectly written as “Sòng Cháo.”"
+        },
+        {
+          "caseId": "squad-5733cf61",
+          "operator": "date",
+          "change": "1754 -> 1755",
+          "question": "When was the French and Indian War?",
+          "reference": "1754–1763",
+          "original": "The French and Indian War (1754–1763) was the North American theater of the worldwide Seven Years' War.",
+          "answer": "The French and Indian War (1755–1763) was the North American theater of the worldwide Seven Years' War.",
+          "reason": "The output states that the French and Indian War took place from 1755 to 1763."
+        }
+      ],
+      "rejectedOriginals": [
+        {
+          "caseId": "squad-57105da9",
+          "operator": "original",
+          "change": "",
+          "question": "Where was France's Huguenot population largely centered?",
+          "reference": "the southern and central parts of France",
+          "original": "Huguenot numbers peaked near an estimated two million by 1562, concentrated mainly in the southern and central parts of France, about one-eighth the number of French Catholics.",
+          "answer": "Huguenot numbers peaked near an estimated two million by 1562, concentrated mainly in the southern and central parts of France, about one-eighth the number of French Catholics.",
+          "reason": "The output places Huguenots mainly in southern and central France, but their population was largely centered in southern and western France."
+        },
+        {
+          "caseId": "squad-5726d8bd",
+          "operator": "original",
+          "change": "",
+          "question": "What word is the word pharmacy taken from?",
+          "reference": "its root word pharma",
+          "original": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "answer": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "reason": "The output says “pharma,” but “pharmacy” ultimately derives from Greek “pharmakeia” (via Latin and French), not from “pharma” as stated."
+        },
+        {
+          "caseId": "squad-572fac17",
+          "operator": "original",
+          "change": "",
+          "question": "When was the current parliament of Scotland convened?",
+          "reference": "Following a referendum in 1997",
+          "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "answer": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "reason": "The output identifies the Scotland Act 1998 but does not state when the current Scottish Parliament was convened. It was convened in 1999."
+        }
+      ],
+      "failedControls": []
+    },
+    {
+      "name": "noref-strict.gemini",
+      "dataset": "squad",
+      "family": "noref-strict",
+      "label": "Strict, no answer key",
+      "model": "Gemini 3.8 Flash",
+      "reference": false,
+      "originals": {
+        "judged": 43,
+        "passed": 41,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 36,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 82,
+        "passed": 81,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 18,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 41,
+          "passed": 41,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 41,
+          "passed": 40,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 13,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 3,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [
+        {
+          "caseId": "squad-5726d8bd",
+          "operator": "original",
+          "change": "",
+          "question": "What word is the word pharmacy taken from?",
+          "reference": "its root word pharma",
+          "original": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "answer": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "reason": "The word pharmacy is derived from the Greek 'pharmakeia' (from 'pharmakon') via Old French and Medieval Latin, not from the modern root or term 'pharma'."
+        },
+        {
+          "caseId": "squad-572fac17",
+          "operator": "original",
+          "change": "",
+          "question": "When was the current parliament of Scotland convened?",
+          "reference": "Following a referendum in 1997",
+          "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "answer": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "reason": "The answer fails to state when the Parliament actually convened (its first meeting was on 12 May 1999, with official opening on 1 July 1999) rather than when the establishing legislation was passed."
+        }
+      ],
+      "failedControls": [
+        {
+          "caseId": "squad-57105da9",
+          "operator": "filler",
+          "change": "added: I hope this helps.",
+          "question": "Where was France's Huguenot population largely centered?",
+          "reference": "the southern and central parts of France",
+          "original": "Huguenot numbers peaked near an estimated two million by 1562, concentrated mainly in the southern and central parts of France, about one-eighth the number of French Catholics.",
+          "answer": "Huguenot numbers peaked near an estimated two million by 1562, concentrated mainly in the southern and central parts of France, about one-eighth the number of French Catholics. I hope this helps.",
+          "reason": "France's Huguenot population was concentrated mainly in the southern and western parts of France, rather than the central parts, which were predominantly Catholic."
+        }
+      ]
+    },
+    {
+      "name": "noref-strict.luna",
+      "dataset": "squad",
+      "family": "noref-strict",
+      "label": "Strict, no answer key",
+      "model": "GPT-6 Luna",
+      "reference": false,
+      "originals": {
+        "judged": 43,
+        "passed": 36,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 30,
+        "passed": 1,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 72,
+        "passed": 67,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "entity": {
+          "judged": 14,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 36,
+          "passed": 33,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 36,
+          "passed": 34,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "negation": {
+          "judged": 12,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 2,
+          "passed": 1,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "number": {
+          "judged": 2,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [
+        {
+          "caseId": "squad-56df9e28",
+          "operator": "date",
+          "change": "1856 -> 1857",
+          "question": "In what year was Nikola Tesla born? ",
+          "reference": "1856",
+          "original": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1856 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+          "answer": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+          "reason": "Nikola Tesla was born in 1857."
+        }
+      ],
+      "rejectedOriginals": [
+        {
+          "caseId": "squad-5725b33f",
+          "operator": "original",
+          "change": "",
+          "question": "When did the 1973 oil crisis begin?",
+          "reference": "October 1973",
+          "original": "The 1973 oil crisis began in October 1973 when the members of the Organization of Arab Petroleum Exporting Countries (OAPEC, consisting of the Arab members of OPEC plus Egypt and Syria) proclaimed an oil embargo.",
+          "answer": "The 1973 oil crisis began in October 1973 when the members of the Organization of Arab Petroleum Exporting Countries (OAPEC, consisting of the Arab members of OPEC plus Egypt and Syria) proclaimed an oil embargo.",
+          "reason": "The crisis began in October 1973, but OAPEC was not simply the Arab members of OPEC plus Egypt and Syria; it also included members such as Tunisia."
+        },
+        {
+          "caseId": "squad-5725b418",
+          "operator": "original",
+          "change": "",
+          "question": "What project put the first Americans into space?",
+          "reference": "Project Mercury",
+          "original": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "answer": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+          "reason": "Project Mercury is the correct answer, but the response incorrectly describes the program that followed it as a three-man spacecraft, conflating Apollo with the intervening Gemini program."
+        },
+        {
+          "caseId": "squad-57264684",
+          "operator": "original",
+          "change": "",
+          "question": "Where did the black death originate?",
+          "reference": "the arid plains of Central Asia",
+          "original": "The Black Death is thought to have originated in the arid plains of Central Asia, where it then travelled along the Silk Road, reaching Crimea by 1343.",
+          "answer": "The Black Death is thought to have originated in the arid plains of Central Asia, where it then travelled along the Silk Road, reaching Crimea by 1343.",
+          "reason": "The Black Death is generally thought to have originated in Central Asia, but it reached Crimea around 1346, not 1343."
+        },
+        {
+          "caseId": "squad-57267b75",
+          "operator": "original",
+          "change": "",
+          "question": "What company owns the American Broadcasting Company?",
+          "reference": "The Walt Disney Company",
+          "original": "The American Broadcasting Company (ABC) (stylized in its logo as abc since 1957) is an American commercial broadcast television network that is owned by the Disney–ABC Television Group, a subsidiary of Disney Media Networks division of The Walt Disney Company.",
+          "answer": "The American Broadcasting Company (ABC) (stylized in its logo as abc since 1957) is an American commercial broadcast television network that is owned by the Disney–ABC Television Group, a subsidiary of Disney Media Networks division of The Walt Disney Company.",
+          "reason": "The Walt Disney Company owns ABC, but the answer gives outdated subsidiary and division names and incorrectly says the “abc” logo dates from 1957."
+        },
+        {
+          "caseId": "squad-5726d8bd",
+          "operator": "original",
+          "change": "",
+          "question": "What word is the word pharmacy taken from?",
+          "reference": "its root word pharma",
+          "original": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "answer": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+          "reason": "Pharmacy derives through French and Latin from Greek pharmakeia (related to pharmakon, meaning a drug or medicine), not from a term called “pharma” dating to the 15th–17th centuries."
+        },
+        {
+          "caseId": "squad-572fac17",
+          "operator": "original",
+          "change": "",
+          "question": "When was the current parliament of Scotland convened?",
+          "reference": "Following a referendum in 1997",
+          "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "answer": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+          "reason": "The answer does not give the date; the Scottish Parliament first convened on 12 May 1999."
+        },
+        {
+          "caseId": "squad-573060b4",
+          "operator": "original",
+          "change": "",
+          "question": "The word imperialism has it's origins in which ancient language? ",
+          "reference": "Latin",
+          "original": "Its name originated from the Latin word \"imperium\", which means to rule over large territories.",
+          "answer": "Its name originated from the Latin word \"imperium\", which means to rule over large territories.",
+          "reason": "The word derives from Latin imperium, but imperium means authority, command, or sovereignty—not specifically “to rule over large territories.”"
+        }
+      ],
+      "failedControls": [
+        {
+          "caseId": "squad-570d2417",
+          "operator": "filler",
+          "change": "added: I hope this helps.",
+          "question": "What kind of economy does Victoria have?",
+          "reference": "diversified",
+          "original": "The economy of Victoria is highly diversified: service sectors including financial and property services, health, education, wholesale, retail, hospitality and manufacturing constitute the majority of employment.",
+          "answer": "The economy of Victoria is highly diversified: service sectors including financial and property services, health, education, wholesale, retail, hospitality and manufacturing constitute the majority of employment. I hope this helps.",
+          "reason": "Victoria has a diversified, service-dominated economy, but manufacturing is not a service sector as the answer categorizes it."
+        },
+        {
+          "caseId": "squad-57105da9",
+          "operator": "reformat",
+          "change": "prefixed \"Answer:\"",
+          "question": "Where was France's Huguenot population largely centered?",
+          "reference": "the southern and central parts of France",
+          "original": "Huguenot numbers peaked near an estimated two million by 1562, concentrated mainly in the southern and central parts of France, about one-eighth the number of French Catholics.",
+          "answer": "Answer: Huguenot numbers peaked near an estimated two million by 1562, concentrated mainly in the southern and central parts of France, about one-eighth the number of French Catholics.",
+          "reason": "Huguenots were largely concentrated in southern and western France, not mainly the southern and central parts."
+        },
+        {
+          "caseId": "squad-57269e8a",
+          "operator": "reformat",
+          "change": "prefixed \"Answer:\"",
+          "question": "What do we call the empire that Genghis Khan founded?",
+          "reference": "the Mongol Empire",
+          "original": "After founding the Mongol Empire and being proclaimed \"Genghis Khan\", he started the Mongol invasions that resulted in the conquest of most of Eurasia.",
+          "answer": "Answer: After founding the Mongol Empire and being proclaimed \"Genghis Khan\", he started the Mongol invasions that resulted in the conquest of most of Eurasia.",
+          "reason": "The empire is correctly named, but the claim that the invasions conquered most of Eurasia is inaccurate."
+        },
+        {
+          "caseId": "squad-57269e8a",
+          "operator": "filler",
+          "change": "added: I hope this helps.",
+          "question": "What do we call the empire that Genghis Khan founded?",
+          "reference": "the Mongol Empire",
+          "original": "After founding the Mongol Empire and being proclaimed \"Genghis Khan\", he started the Mongol invasions that resulted in the conquest of most of Eurasia.",
+          "answer": "After founding the Mongol Empire and being proclaimed \"Genghis Khan\", he started the Mongol invasions that resulted in the conquest of most of Eurasia. I hope this helps.",
+          "reason": "It correctly names the Mongol Empire, but the claim that Mongol invasions led to the conquest of most of Eurasia is an overstatement."
+        },
+        {
+          "caseId": "squad-573735e8",
+          "operator": "reformat",
+          "change": "prefixed \"Answer:\"",
+          "question": "What concept did philosophers in antiquity use to study simple machines?",
+          "reference": "force",
+          "original": "Philosophers in antiquity used the concept of force in the study of stationary and moving objects and simple machines, but thinkers such as Aristotle and Archimedes retained fundamental errors in understanding force.",
+          "answer": "Answer: Philosophers in antiquity used the concept of force in the study of stationary and moving objects and simple machines, but thinkers such as Aristotle and Archimedes retained fundamental errors in understanding force.",
+          "reason": "The answer identifies force, but its claim that Archimedes retained fundamental errors in understanding force is misleading; his work established important, sound principles of statics and simple machines."
+        }
+      ]
+    },
+    {
+      "name": "walead-grounded.gemini",
+      "dataset": "walead",
+      "family": "walead-grounded",
+      "label": "wa-lead grounded check",
+      "model": "Gemini 3.8 Flash",
+      "reference": true,
+      "originals": {
+        "judged": 12,
+        "passed": 12,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 32,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 24,
+        "passed": 24,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "number": {
+          "judged": 5,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "entity": {
+          "judged": 10,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "term": {
+          "judged": 10,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 12,
+          "passed": 12,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 12,
+          "passed": 12,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "unit": {
+          "judged": 3,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    },
+    {
+      "name": "walead-grounded.luna",
+      "dataset": "walead",
+      "family": "walead-grounded",
+      "label": "wa-lead grounded check",
+      "model": "GPT-6 Luna",
+      "reference": true,
+      "originals": {
+        "judged": 12,
+        "passed": 12,
+        "unreadable": 0
+      },
+      "wrong": {
+        "judged": 32,
+        "passed": 0,
+        "unreadable": 0
+      },
+      "controls": {
+        "judged": 24,
+        "passed": 24,
+        "unreadable": 0
+      },
+      "byOperator": {
+        "number": {
+          "judged": 5,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "entity": {
+          "judged": 10,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "date": {
+          "judged": 4,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "term": {
+          "judged": 10,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        },
+        "reformat": {
+          "judged": 12,
+          "passed": 12,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "filler": {
+          "judged": 12,
+          "passed": 12,
+          "unreadable": 0,
+          "kind": "control"
+        },
+        "unit": {
+          "judged": 3,
+          "passed": 0,
+          "unreadable": 0,
+          "kind": "wrong"
+        }
+      },
+      "falsePasses": [],
+      "rejectedOriginals": [],
+      "failedControls": []
+    }
+  ],
+  "wrongItems": [
+    {
+      "dataset": "squad",
+      "caseId": "squad-56be4db0",
+      "operator": "entity",
+      "change": "Denver Broncos -> Pittsburgh Steelers",
+      "question": "Which NFL team represented the AFC at Super Bowl 50?",
+      "reference": "Denver Broncos",
+      "original": "The American Football Conference (AFC) champion Denver Broncos defeated the National Football Conference (NFC) champion Carolina Panthers 24–10 to earn their third Super Bowl title.",
+      "answer": "The American Football Conference (AFC) champion Pittsburgh Steelers defeated the National Football Conference (NFC) champion Carolina Panthers 24–10 to earn their third Super Bowl title.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5733a5f5",
+      "operator": "negation",
+      "change": "was -> was not",
+      "question": "What was Maria Curie the first female recipient of?",
+      "reference": "Nobel Prize",
+      "original": "One of the most famous people born in Warsaw was Maria Skłodowska-Curie, who achieved international recognition for her research on radioactivity and was the first female recipient of the Nobel Prize.",
+      "answer": "One of the most famous people born in Warsaw was Maria Skłodowska-Curie, who achieved international recognition for her research on radioactivity and was not the first female recipient of the Nobel Prize.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5733a5f5",
+      "operator": "entity",
+      "change": "Nobel Prize -> Pulitzer Prize",
+      "question": "What was Maria Curie the first female recipient of?",
+      "reference": "Nobel Prize",
+      "original": "One of the most famous people born in Warsaw was Maria Skłodowska-Curie, who achieved international recognition for her research on radioactivity and was the first female recipient of the Nobel Prize.",
+      "answer": "One of the most famous people born in Warsaw was Maria Skłodowska-Curie, who achieved international recognition for her research on radioactivity and was the first female recipient of the Pulitzer Prize.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56ddde6b",
+      "operator": "entity",
+      "change": "France -> Belgium",
+      "question": "In what country is Normandy located?",
+      "reference": "France",
+      "original": "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in France.",
+      "answer": "The Normans (Norman: Nourmands; French: Normands; Latin: Normanni) were the people who in the 10th and 11th centuries gave their name to Normandy, a region in Belgium.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "question": "In what year was Nikola Tesla born? ",
+      "reference": "1856",
+      "original": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1856 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "answer": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "pass"
+      },
+      "reasons": {
+        "noref-rubric.luna": "The output states that Nikola Tesla was born on 10 July 1857, so the year is 1857.",
+        "noref-strict.luna": "Nikola Tesla was born in 1857."
+      }
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56e16182",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What branch of theoretical computer science deals with broadly classifying computational problems by difficulty and class of relationship?",
+      "reference": "Computational complexity theory",
+      "original": "Computational complexity theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+      "answer": "Computational complexity theory is not a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56e16182",
+      "operator": "entity",
+      "change": "Computational complexity theory -> Computability theory",
+      "question": "What branch of theoretical computer science deals with broadly classifying computational problems by difficulty and class of relationship?",
+      "reference": "Computational complexity theory",
+      "original": "Computational complexity theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+      "answer": "Computability theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {
+        "noref-rubric.luna": "The output identifies computability theory as the branch concerned with classifying computational problems by difficulty and relating the resulting classes."
+      }
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56e74777",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What is a course of study called?",
+      "reference": "the curriculum.",
+      "original": "Teachers may use a lesson plan to facilitate student learning, providing a course of study which is called the curriculum.",
+      "answer": "Teachers may use a lesson plan to facilitate student learning, providing a course of study which is not called the curriculum.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56f7c651",
+      "operator": "negation",
+      "change": "was -> was not",
+      "question": "Of what nationality was Martin Luther?",
+      "reference": "German",
+      "original": "Martin Luther (/ˈluːθər/ or /ˈluːðər/; German: [ˈmaɐ̯tiːn ˈlʊtɐ] ( listen); 10 November 1483 – 18 February 1546) was a German professor of theology, composer, priest, former monk and a seminal figure in the Protestant Reformation.",
+      "answer": "Martin Luther (/ˈluːθər/ or /ˈluːðər/; German: [ˈmaɐ̯tiːn ˈlʊtɐ] ( listen); 10 November 1483 – 18 February 1546) was not a German professor of theology, composer, priest, former monk and a seminal figure in the Protestant Reformation.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-56f7c651",
+      "operator": "entity",
+      "change": "German -> Austrian",
+      "question": "Of what nationality was Martin Luther?",
+      "reference": "German",
+      "original": "Martin Luther (/ˈluːθər/ or /ˈluːðər/; German: [ˈmaɐ̯tiːn ˈlʊtɐ] ( listen); 10 November 1483 – 18 February 1546) was a German professor of theology, composer, priest, former monk and a seminal figure in the Protestant Reformation.",
+      "answer": "Martin Luther (/ˈluːθər/ or /ˈluːðər/; Austrian: [ˈmaɐ̯tiːn ˈlʊtɐ] ( listen); 10 November 1483 – 18 February 1546) was a Austrian professor of theology, composer, priest, former monk and a seminal figure in the Protestant Reformation.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5705e26d",
+      "operator": "entity",
+      "change": "SoCal -> NorCal",
+      "question": "What is Southern California often abbreviated as?",
+      "reference": "SoCal",
+      "original": "Southern California, often abbreviated SoCal, is a geographic and cultural region that generally comprises California's southernmost 10 counties.",
+      "answer": "Southern California, often abbreviated NorCal, is a geographic and cultural region that generally comprises California's southernmost 10 counties.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57092322",
+      "operator": "entity",
+      "change": "BSkyB -> Freesat",
+      "question": "What company was formed by the merger of Sky Television and British Satellite Broadcasting?",
+      "reference": "BSkyB",
+      "original": "Formed in November 1990 by the equal merger of Sky Television and British Satellite Broadcasting, BSkyB became the UK's largest digital subscription television company.",
+      "answer": "Formed in November 1990 by the equal merger of Sky Television and British Satellite Broadcasting, Freesat became the UK's largest digital subscription television company.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-570d2417",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What kind of economy does Victoria have?",
+      "reference": "diversified",
+      "original": "The economy of Victoria is highly diversified: service sectors including financial and property services, health, education, wholesale, retail, hospitality and manufacturing constitute the majority of employment.",
+      "answer": "The economy of Victoria is not highly diversified: service sectors including financial and property services, health, education, wholesale, retail, hospitality and manufacturing constitute the majority of employment.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-571a4842",
+      "operator": "number",
+      "change": "8 -> 9",
+      "question": "The atomic number of the periodic table for oxygen?",
+      "reference": "8",
+      "original": "Oxygen is a chemical element with symbol O and atomic number 8.",
+      "answer": "Oxygen is a chemical element with symbol O and atomic number 9.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5725b33f",
+      "operator": "entity",
+      "change": "October 1973 -> November 1973",
+      "question": "When did the 1973 oil crisis begin?",
+      "reference": "October 1973",
+      "original": "The 1973 oil crisis began in October 1973 when the members of the Organization of Arab Petroleum Exporting Countries (OAPEC, consisting of the Arab members of OPEC plus Egypt and Syria) proclaimed an oil embargo.",
+      "answer": "The 1973 oil crisis began in November 1973 when the members of the Organization of Arab Petroleum Exporting Countries (OAPEC, consisting of the Arab members of OPEC plus Egypt and Syria) proclaimed an oil embargo.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5725b33f",
+      "operator": "date",
+      "change": "1973 -> 1974",
+      "question": "When did the 1973 oil crisis begin?",
+      "reference": "October 1973",
+      "original": "The 1973 oil crisis began in October 1973 when the members of the Organization of Arab Petroleum Exporting Countries (OAPEC, consisting of the Arab members of OPEC plus Egypt and Syria) proclaimed an oil embargo.",
+      "answer": "The 1974 oil crisis began in October 1974 when the members of the Organization of Arab Petroleum Exporting Countries (OAPEC, consisting of the Arab members of OPEC plus Egypt and Syria) proclaimed an oil embargo.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5725b418",
+      "operator": "entity",
+      "change": "Project Mercury -> Project Dyna-Soar",
+      "question": "What project put the first Americans into space?",
+      "reference": "Project Mercury",
+      "original": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Mercury which put the first Americans in space, Apollo was later dedicated to President John F.",
+      "answer": "Eisenhower's administration as a three-man spacecraft to follow the one-man Project Dyna-Soar which put the first Americans in space, Apollo was later dedicated to President John F.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5725b7f3",
+      "operator": "negation",
+      "change": "are -> are not",
+      "question": "What are the three sources of European Union law?",
+      "reference": "primary law, secondary law and supplementary law.",
+      "original": "The three sources of European Union law are primary law, secondary law and supplementary law.",
+      "answer": "The three sources of European Union law are not primary law, secondary law and supplementary law.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57264684",
+      "operator": "negation",
+      "change": "have -> have not",
+      "question": "Where did the black death originate?",
+      "reference": "the arid plains of Central Asia",
+      "original": "The Black Death is thought to have originated in the arid plains of Central Asia, where it then travelled along the Silk Road, reaching Crimea by 1343.",
+      "answer": "The Black Death is thought to have not originated in the arid plains of Central Asia, where it then travelled along the Silk Road, reaching Crimea by 1343.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57267b75",
+      "operator": "entity",
+      "change": "The Walt Disney Company -> Warner Bros. Discovery",
+      "question": "What company owns the American Broadcasting Company?",
+      "reference": "The Walt Disney Company",
+      "original": "The American Broadcasting Company (ABC) (stylized in its logo as abc since 1957) is an American commercial broadcast television network that is owned by the Disney–ABC Television Group, a subsidiary of Disney Media Networks division of The Walt Disney Company.",
+      "answer": "The American Broadcasting Company (ABC) (stylized in its logo as abc since 1957) is an American commercial broadcast television network that is owned by the Disney–ABC Television Group, a subsidiary of Disney Media Networks division of Warner Bros. Discovery.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5726d8bd",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What word is the word pharmacy taken from?",
+      "reference": "its root word pharma",
+      "original": "The word pharmacy is derived from its root word pharma which was a term used since the 15th–17th centuries.",
+      "answer": "The word pharmacy is not derived from its root word pharma which was a term used since the 15th–17th centuries.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5726e65e",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What is the immune system?",
+      "reference": "a system of many biological structures and processes within an organism that protects against disease",
+      "original": "The immune system is a system of many biological structures and processes within an organism that protects against disease.",
+      "answer": "The immune system is not a system of many biological structures and processes within an organism that protects against disease.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57271c23",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What is it called when people in society rebel against laws they think are unfair?",
+      "reference": "Civil disobedience",
+      "original": "Civil disobedience is one of the many ways people have rebelled against what they deem to be unfair laws.",
+      "answer": "Civil disobedience is not one of the many ways people have rebelled against what they deem to be unfair laws.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57271c23",
+      "operator": "entity",
+      "change": "Civil disobedience -> Conscientious objection",
+      "question": "What is it called when people in society rebel against laws they think are unfair?",
+      "reference": "Civil disobedience",
+      "original": "Civil disobedience is one of the many ways people have rebelled against what they deem to be unfair laws.",
+      "answer": "Conscientious objection is one of the many ways people have rebelled against what they deem to be unfair laws.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57273a46",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What is the process of constructing a building or infrastructure?",
+      "reference": "Construction",
+      "original": "Construction is the process of constructing a building or infrastructure.",
+      "answer": "Construction is not the process of constructing a building or infrastructure.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57273a46",
+      "operator": "entity",
+      "change": "Construction -> Engineering",
+      "question": "What is the process of constructing a building or infrastructure?",
+      "reference": "Construction",
+      "original": "Construction is the process of constructing a building or infrastructure.",
+      "answer": "Engineering is the process of constructing a building or infrastructure.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {
+        "noref-rubric.luna": "The output directly identifies engineering as the process of constructing a building or infrastructure."
+      }
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5727aa41",
+      "operator": "entity",
+      "change": "John Harvard -> Increase Mather",
+      "question": "What individual is the school named after?",
+      "reference": "John Harvard",
+      "original": "Established originally by the Massachusetts legislature and soon thereafter named for John Harvard (its first benefactor), Harvard is the United States' oldest institution of higher learning, and the Harvard Corporation (formally, the President and Fellows of Harvard College) is its first chartered corporation.",
+      "answer": "Established originally by the Massachusetts legislature and soon thereafter named for Increase Mather (its first benefactor), Harvard is the United States' oldest institution of higher learning, and the Harvard Corporation (formally, the President and Fellows of Harvard College) is its first chartered corporation.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {
+        "noref-rubric.luna": "The output states that Harvard was named for Increase Mather, directly answering the question."
+      }
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5727e6cb",
+      "operator": "number",
+      "change": "40 -> 50",
+      "question": "What percentage of global assets does the richest 1% of people have?",
+      "reference": "40%",
+      "original": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 40% of global assets in the year 2000.",
+      "answer": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "pass",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {
+        "noref-rubric.gemini": "The output directly answers the question by stating that the richest 1% owned 50% of global assets according to a study by the World Institute for Development Economics Research.",
+        "noref-rubric.luna": "The output states that the richest 1% owned 50% of global assets."
+      }
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5727efab",
+      "operator": "entity",
+      "change": "BBC -> ITV",
+      "question": "Who is the producer of Doctor Who?",
+      "reference": "BBC",
+      "original": "Doctor Who is a British science-fiction television programme produced by the BBC since 1963.",
+      "answer": "Doctor Who is a British science-fiction television programme produced by the ITV since 1963.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57283c46",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What kind of university is the University of Chicago?",
+      "reference": "a private research university",
+      "original": "The University of Chicago (UChicago, Chicago, or U of C) is a private research university in Chicago.",
+      "answer": "The University of Chicago (UChicago, Chicago, or U of C) is not a private research university in Chicago.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57285ed5",
+      "operator": "entity",
+      "change": "Yuán Cháo -> Sòng Cháo",
+      "question": "What is the Chinese name for the Yuan dynasty?",
+      "reference": "Yuán Cháo",
+      "original": "The Yuan dynasty (Chinese: 元朝; pinyin: Yuán Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+      "answer": "The Yuan dynasty (Chinese: 元朝; pinyin: Sòng Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "pass",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {
+        "noref-rubric.gemini": "The output provides the Chinese name for the Yuan dynasty in Chinese characters (元朝 and officially 大元), although it contains a typo in the pinyin for the former.",
+        "noref-rubric.luna": "The output gives the Chinese name as 元朝, though its pinyin is incorrectly written as “Sòng Cháo.”"
+      }
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5728dab9",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "Where is Kenya located?",
+      "reference": "in Africa",
+      "original": "Kenya (/ˈkɛnjə/; locally [ˈkɛɲa] ( listen)), officially the Republic of Kenya, is a country in Africa and a founding member of the East African Community (EAC).",
+      "answer": "Kenya (/ˈkɛnjə/; locally [ˈkɛɲa] ( listen)), officially the Republic of Kenya, is not a country in Africa and a founding member of the East African Community (EAC).",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5728dab9",
+      "operator": "entity",
+      "change": "Africa -> Asia",
+      "question": "Where is Kenya located?",
+      "reference": "in Africa",
+      "original": "Kenya (/ˈkɛnjə/; locally [ˈkɛɲa] ( listen)), officially the Republic of Kenya, is a country in Africa and a founding member of the East African Community (EAC).",
+      "answer": "Kenya (/ˈkɛnjə/; locally [ˈkɛɲa] ( listen)), officially the Republic of Kenya, is a country in Asia and a founding member of the East African Community (EAC).",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-57295301",
+      "operator": "negation",
+      "change": "is -> is not",
+      "question": "What is the primary purpose of chloroplasts?",
+      "reference": "to conduct photosynthesis",
+      "original": "Chloroplasts' main role is to conduct photosynthesis, where the photosynthetic pigment chlorophyll captures the energy from sunlight and converts it and stores it in the energy-storage molecules ATP and NADPH while freeing oxygen from water.",
+      "answer": "Chloroplasts' main role is not to conduct photosynthesis, where the photosynthetic pigment chlorophyll captures the energy from sunlight and converts it and stores it in the energy-storage molecules ATP and NADPH while freeing oxygen from water.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-572fac17",
+      "operator": "entity",
+      "change": "Following a referendum in 1997 -> Following a referendum in 1979",
+      "question": "When was the current parliament of Scotland convened?",
+      "reference": "Following a referendum in 1997",
+      "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+      "answer": "Following a referendum in 1979, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-572fac17",
+      "operator": "date",
+      "change": "1997 -> 1998",
+      "question": "When was the current parliament of Scotland convened?",
+      "reference": "Following a referendum in 1997",
+      "original": "Following a referendum in 1997, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+      "answer": "Following a referendum in 1998, in which the Scottish electorate voted for devolution, the current Parliament was convened by the Scotland Act 1998, which sets out its powers as a devolved legislature.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-573060b4",
+      "operator": "entity",
+      "change": "Latin -> Sanskrit",
+      "question": "The word imperialism has it's origins in which ancient language? ",
+      "reference": "Latin",
+      "original": "Its name originated from the Latin word \"imperium\", which means to rule over large territories.",
+      "answer": "Its name originated from the Sanskrit word \"imperium\", which means to rule over large territories.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5730982f",
+      "operator": "entity",
+      "change": "United Methodist Church -> United Moravian Church",
+      "question": "What does UMC stand for?",
+      "reference": "United Methodist Church",
+      "original": "The United Methodist Church (UMC) is a mainline Protestant Methodist denomination.",
+      "answer": "The United Moravian Church (UMC) is a mainline Protestant Methodist denomination.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "fail",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "squad",
+      "caseId": "squad-5733cf61",
+      "operator": "date",
+      "change": "1754 -> 1755",
+      "question": "When was the French and Indian War?",
+      "reference": "1754–1763",
+      "original": "The French and Indian War (1754–1763) was the North American theater of the worldwide Seven Years' War.",
+      "answer": "The French and Indian War (1755–1763) was the North American theater of the worldwide Seven Years' War.",
+      "verdicts": {
+        "promptfoo-rubric.gemini": "fail",
+        "promptfoo-rubric.luna": "fail",
+        "promptfoo-factuality.gemini": "fail",
+        "promptfoo-factuality.luna": "fail",
+        "openai-closedqa.gemini": "fail",
+        "openai-closedqa.luna": "fail",
+        "strict.gemini": "fail",
+        "strict.luna": "fail",
+        "noref-rubric.gemini": "fail",
+        "noref-rubric.luna": "pass",
+        "noref-strict.gemini": "fail",
+        "noref-strict.luna": "fail"
+      },
+      "reasons": {
+        "noref-rubric.luna": "The output states that the French and Indian War took place from 1755 to 1763."
+      }
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-amelia",
+      "operator": "number",
+      "change": "1.5 -> 1.6",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Thanks for sharing that you’re looking to buy a rumah in BSD, with a budget of IDR 1.5bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "answer": "Thanks for sharing that you’re looking to buy a rumah in BSD, with a budget of IDR 1.6bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-amelia",
+      "operator": "entity",
+      "change": "BSD -> Bintaro",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Thanks for sharing that you’re looking to buy a rumah in BSD, with a budget of IDR 1.5bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "answer": "Thanks for sharing that you’re looking to buy a rumah in Bintaro, with a budget of IDR 1.5bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-amelia",
+      "operator": "date",
+      "change": "this month -> next month",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Thanks for sharing that you’re looking to buy a rumah in BSD, with a budget of IDR 1.5bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "answer": "Thanks for sharing that you’re looking to buy a rumah in BSD, with a budget of IDR 1.5bn and a timeline of next month. Could we have a quick call to discuss your options? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-amelia",
+      "operator": "term",
+      "change": "buy -> rent",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Thanks for sharing that you’re looking to buy a rumah in BSD, with a budget of IDR 1.5bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "answer": "Thanks for sharing that you’re looking to rent a rumah in BSD, with a budget of IDR 1.5bn and a timeline of this month. Could we have a quick call to discuss your options? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-budi",
+      "operator": "number",
+      "change": "1,5 -> 1,6",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,6 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-budi",
+      "operator": "entity",
+      "change": "BSD -> Kemang",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya catat Anda mencari rumah di Kemang dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-budi",
+      "operator": "unit",
+      "change": "miliar -> juta",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 juta IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-budi",
+      "operator": "date",
+      "change": "bulan ini -> bulan depan",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 miliar IDR dan target beli bulan depan. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c01-budi",
+      "operator": "term",
+      "change": "rumah -> apartemen",
+      "question": "",
+      "reference": "{\"budgetIDR\": 1500000000, \"areas\": [\"BSD\"], \"intent\": \"buy\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"bulan ini\"}",
+      "original": "Siap, saya catat Anda mencari rumah di BSD dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya catat Anda mencari apartemen di BSD dengan budget 1,5 miliar IDR dan target beli bulan ini. Bisa kita jadwalkan call singkat hari ini untuk bahas langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c02-amelia",
+      "operator": "number",
+      "change": "15,000,000 -> 16,000,000",
+      "question": "",
+      "reference": "{\"budgetIDR\": 15000000, \"areas\": [\"Jaksel\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen studio\", \"timeline\": null}",
+      "original": "Hi, just checking in—are you still looking to rent a studio apartment in Jaksel with a budget of IDR 15,000,000? Best, Amelia",
+      "answer": "Hi, just checking in—are you still looking to rent a studio apartment in Jaksel with a budget of IDR 16,000,000? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c02-amelia",
+      "operator": "entity",
+      "change": "Jaksel -> Bintaro",
+      "question": "",
+      "reference": "{\"budgetIDR\": 15000000, \"areas\": [\"Jaksel\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen studio\", \"timeline\": null}",
+      "original": "Hi, just checking in—are you still looking to rent a studio apartment in Jaksel with a budget of IDR 15,000,000? Best, Amelia",
+      "answer": "Hi, just checking in—are you still looking to rent a studio apartment in Bintaro with a budget of IDR 15,000,000? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c02-amelia",
+      "operator": "term",
+      "change": "rent -> buy",
+      "question": "",
+      "reference": "{\"budgetIDR\": 15000000, \"areas\": [\"Jaksel\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen studio\", \"timeline\": null}",
+      "original": "Hi, just checking in—are you still looking to rent a studio apartment in Jaksel with a budget of IDR 15,000,000? Best, Amelia",
+      "answer": "Hi, just checking in—are you still looking to buy a studio apartment in Jaksel with a budget of IDR 15,000,000? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c02-budi",
+      "operator": "entity",
+      "change": "Jaksel -> BSD",
+      "question": "",
+      "reference": "{\"budgetIDR\": 15000000, \"areas\": [\"Jaksel\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen studio\", \"timeline\": null}",
+      "original": "Hai, masih mencari apartemen studio untuk disewa di Jaksel dengan budget Rp15 juta? Kalau masih, kabari ya. Salam, Budi",
+      "answer": "Hai, masih mencari apartemen studio untuk disewa di BSD dengan budget Rp15 juta? Kalau masih, kabari ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c02-budi",
+      "operator": "unit",
+      "change": "juta -> miliar",
+      "question": "",
+      "reference": "{\"budgetIDR\": 15000000, \"areas\": [\"Jaksel\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen studio\", \"timeline\": null}",
+      "original": "Hai, masih mencari apartemen studio untuk disewa di Jaksel dengan budget Rp15 juta? Kalau masih, kabari ya. Salam, Budi",
+      "answer": "Hai, masih mencari apartemen studio untuk disewa di Jaksel dengan budget Rp15 miliar? Kalau masih, kabari ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c02-budi",
+      "operator": "term",
+      "change": "apartemen -> rumah",
+      "question": "",
+      "reference": "{\"budgetIDR\": 15000000, \"areas\": [\"Jaksel\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen studio\", \"timeline\": null}",
+      "original": "Hai, masih mencari apartemen studio untuk disewa di Jaksel dengan budget Rp15 juta? Kalau masih, kabari ya. Salam, Budi",
+      "answer": "Hai, masih mencari rumah studio untuk disewa di Jaksel dengan budget Rp15 juta? Kalau masih, kabari ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-amelia",
+      "operator": "number",
+      "change": "20,000,000 -> 30,000,000",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Hi! I’m following up on your search to rent a house in BSD, with a budget of IDR 20,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "answer": "Hi! I’m following up on your search to rent a house in BSD, with a budget of IDR 30,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-amelia",
+      "operator": "entity",
+      "change": "BSD -> Kemang",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Hi! I’m following up on your search to rent a house in BSD, with a budget of IDR 20,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "answer": "Hi! I’m following up on your search to rent a house in Kemang, with a budget of IDR 20,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-amelia",
+      "operator": "date",
+      "change": "this week -> next week",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Hi! I’m following up on your search to rent a house in BSD, with a budget of IDR 20,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "answer": "Hi! I’m following up on your search to rent a house in BSD, with a budget of IDR 20,000,000 and a timeline of next week. Would you like to arrange a viewing this week? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-amelia",
+      "operator": "term",
+      "change": "rent -> buy",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Hi! I’m following up on your search to rent a house in BSD, with a budget of IDR 20,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "answer": "Hi! I’m following up on your search to buy a house in BSD, with a budget of IDR 20,000,000 and a timeline of this week. Would you like to arrange a viewing this week? Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-budi",
+      "operator": "number",
+      "change": "20 -> 30",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 30 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-budi",
+      "operator": "entity",
+      "change": "BSD -> Bintaro",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya bantu carikan rumah sewa di Bintaro dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-budi",
+      "operator": "unit",
+      "change": "juta -> miliar",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 miliar IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-budi",
+      "operator": "date",
+      "change": "minggu ini -> minggu depan",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 juta IDR untuk minggu depan. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c04-budi",
+      "operator": "term",
+      "change": "rumah -> apartemen",
+      "question": "",
+      "reference": "{\"budgetIDR\": 20000000, \"areas\": [\"BSD\"], \"intent\": \"rent\", \"urgency\": \"high\", \"propertyType\": \"rumah\", \"timeline\": \"minggu ini\"}",
+      "original": "Siap, saya bantu carikan rumah sewa di BSD dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "answer": "Siap, saya bantu carikan apartemen sewa di BSD dengan budget 20 juta IDR untuk minggu ini. Hari apa yang paling cocok untuk kita jadwalkan langkah berikutnya? Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c07-amelia",
+      "operator": "entity",
+      "change": "BSD -> Jaksel",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"BSD\", \"Alam Sutera\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 1BR\", \"timeline\": null}",
+      "original": "Hi, just checking in—are you still looking to rent a 1BR apartment in BSD or Alam Sutera? No worries if your plans have changed. Best, Amelia",
+      "answer": "Hi, just checking in—are you still looking to rent a 1BR apartment in Jaksel or Alam Sutera? No worries if your plans have changed. Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c07-amelia",
+      "operator": "term",
+      "change": "rent -> buy",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"BSD\", \"Alam Sutera\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 1BR\", \"timeline\": null}",
+      "original": "Hi, just checking in—are you still looking to rent a 1BR apartment in BSD or Alam Sutera? No worries if your plans have changed. Best, Amelia",
+      "answer": "Hi, just checking in—are you still looking to buy a 1BR apartment in BSD or Alam Sutera? No worries if your plans have changed. Best, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c07-budi",
+      "operator": "entity",
+      "change": "BSD -> Jaksel",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"BSD\", \"Alam Sutera\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 1BR\", \"timeline\": null}",
+      "original": "Hai, masih mencari apartemen 1BR untuk disewa di BSD atau Alam Sutera? Kalau masih, kabari saya ya. Salam, Budi",
+      "answer": "Hai, masih mencari apartemen 1BR untuk disewa di Jaksel atau Alam Sutera? Kalau masih, kabari saya ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c07-budi",
+      "operator": "term",
+      "change": "apartemen -> rumah",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"BSD\", \"Alam Sutera\"], \"intent\": \"rent\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 1BR\", \"timeline\": null}",
+      "original": "Hai, masih mencari apartemen 1BR untuk disewa di BSD atau Alam Sutera? Kalau masih, kabari saya ya. Salam, Budi",
+      "answer": "Hai, masih mencari rumah 1BR untuk disewa di BSD atau Alam Sutera? Kalau masih, kabari saya ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c11-amelia",
+      "operator": "entity",
+      "change": "Alam Sutera -> District 9",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"Alam Sutera\"], \"intent\": \"buy\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 2BR\", \"timeline\": null}",
+      "original": "Hi! Just checking in—are you still exploring 2BR apartments to buy in Alam Sutera? No rush; I’m here if you’d like to pick this up again.\n\nBest, Amelia",
+      "answer": "Hi! Just checking in—are you still exploring 2BR apartments to buy in District 9? No rush; I’m here if you’d like to pick this up again.\n\nBest, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c11-amelia",
+      "operator": "term",
+      "change": "2BR -> 1BR",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"Alam Sutera\"], \"intent\": \"buy\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 2BR\", \"timeline\": null}",
+      "original": "Hi! Just checking in—are you still exploring 2BR apartments to buy in Alam Sutera? No rush; I’m here if you’d like to pick this up again.\n\nBest, Amelia",
+      "answer": "Hi! Just checking in—are you still exploring 1BR apartments to buy in Alam Sutera? No rush; I’m here if you’d like to pick this up again.\n\nBest, Amelia",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c11-budi",
+      "operator": "entity",
+      "change": "Alam Sutera -> District 10",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"Alam Sutera\"], \"intent\": \"buy\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 2BR\", \"timeline\": null}",
+      "original": "Hai, kalau masih mencari apartemen 2BR di Alam Sutera untuk dibeli, boleh kabari saya kapan pun ya. Salam, Budi",
+      "answer": "Hai, kalau masih mencari apartemen 2BR di District 10 untuk dibeli, boleh kabari saya kapan pun ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    },
+    {
+      "dataset": "walead",
+      "caseId": "c11-budi",
+      "operator": "term",
+      "change": "apartemen -> rumah",
+      "question": "",
+      "reference": "{\"budgetIDR\": null, \"areas\": [\"Alam Sutera\"], \"intent\": \"buy\", \"urgency\": \"unknown\", \"propertyType\": \"apartemen 2BR\", \"timeline\": null}",
+      "original": "Hai, kalau masih mencari apartemen 2BR di Alam Sutera untuk dibeli, boleh kabari saya kapan pun ya. Salam, Budi",
+      "answer": "Hai, kalau masih mencari rumah 2BR di Alam Sutera untuk dibeli, boleh kabari saya kapan pun ya. Salam, Budi",
+      "verdicts": {
+        "walead-grounded.gemini": "fail",
+        "walead-grounded.luna": "fail"
+      },
+      "reasons": {}
+    }
+  ],
+  "repeats": [
+    {
+      "name": "noref-rubric.luna",
+      "repeats": 3,
+      "items": 168,
+      "changed": 9,
+      "alwaysPassed": 3,
+      "sometimesPassed": 5
+    },
+    {
+      "name": "noref-strict.luna",
+      "repeats": 3,
+      "items": 168,
+      "changed": 15,
+      "alwaysPassed": 1,
+      "sometimesPassed": 1
+    }
+  ]
+}

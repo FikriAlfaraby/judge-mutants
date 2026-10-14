@@ -1,0 +1,76 @@
+{
+  "judge": "noref-rubric.gemini",
+  "cases": 43,
+  "originals": {
+    "judged": 43,
+    "passed": 41,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 2,
+      "passed": 1,
+      "unreadable": 0,
+      "rate": 0.5
+    },
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 18,
+      "passed": 1,
+      "unreadable": 0,
+      "rate": 0.05555555555555555
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 13,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 3,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 41,
+      "passed": 41,
+      "unreadable": 0,
+      "rate": 1
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 41,
+      "passed": 41,
+      "unreadable": 0,
+      "rate": 1
+    }
+  ],
+  "falsePasses": [
+    {
+      "caseId": "squad-5727e6cb",
+      "operator": "number",
+      "change": "40 -> 50",
+      "text": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+      "reason": "The output directly answers the question by stating that the richest 1% owned 50% of global assets according to a study by the World Institute for Development Economics Research."
+    },
+    {
+      "caseId": "squad-57285ed5",
+      "operator": "entity",
+      "change": "Yuán Cháo -> Sòng Cháo",
+      "text": "The Yuan dynasty (Chinese: 元朝; pinyin: Sòng Cháo), officially the Great Yuan (Chinese: 大元; pinyin: Dà Yuán; Mongolian: Yehe Yuan Ulus[a]), was the empire or ruling dynasty of China established by Kublai Khan, leader of the Mongolian Borjigin clan.",
+      "reason": "The output provides the Chinese name for the Yuan dynasty in Chinese characters (元朝 and officially 大元), although it contains a typo in the pinyin for the former."
+    }
+  ],
+  "flaky": 0
+}

@@ -1,0 +1,54 @@
+{
+  "promptfoo": "0.124.1",
+  "rows": [
+    {
+      "judge": "promptfoo-factuality.luna",
+      "replies": 168,
+      "agree": 168,
+      "pfPassOursFail": 0,
+      "pfFailOursPass": 0,
+      "oursUnreadable": 0
+    },
+    {
+      "judge": "promptfoo-factuality.gemini",
+      "replies": 168,
+      "agree": 168,
+      "pfPassOursFail": 0,
+      "pfFailOursPass": 0,
+      "oursUnreadable": 0
+    },
+    {
+      "judge": "openai-closedqa.luna",
+      "replies": 168,
+      "agree": 168,
+      "pfPassOursFail": 0,
+      "pfFailOursPass": 0,
+      "oursUnreadable": 0
+    },
+    {
+      "judge": "openai-closedqa.gemini",
+      "replies": 168,
+      "agree": 168,
+      "pfPassOursFail": 0,
+      "pfFailOursPass": 0,
+      "oursUnreadable": 0
+    },
+    {
+      "judge": "promptfoo-rubric.luna",
+      "replies": 168,
+      "agree": 168,
+      "pfPassOursFail": 0,
+      "pfFailOursPass": 0,
+      "oursUnreadable": 0
+    },
+    {
+      "judge": "promptfoo-rubric.gemini",
+      "replies": 168,
+      "agree": 168,
+      "pfPassOursFail": 0,
+      "pfFailOursPass": 0,
+      "oursUnreadable": 0
+    }
+  ],
+  "disagreements": []
+}

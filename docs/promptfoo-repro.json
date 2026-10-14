@@ -1,0 +1,68 @@
+{
+  "promptfoo": "0.124.1",
+  "rows": [
+    {
+      "matcher": "factuality",
+      "meant": "fail",
+      "reply": "{\"category\": \"D\", \"reason\": \"The submission says Belgium; the expert answer says France.\"}",
+      "verdict": "fail",
+      "defect": ""
+    },
+    {
+      "matcher": "factuality",
+      "meant": "fail",
+      "reply": "D) There is a disagreement between the submitted answer and the expert answer.",
+      "verdict": "fail",
+      "defect": ""
+    },
+    {
+      "matcher": "factuality",
+      "meant": "fail",
+      "reply": "There is a disagreement: the submitted answer names the wrong country (Belgium instead of France). Category D.",
+      "verdict": "pass",
+      "defect": "PASSES A FAIL"
+    },
+    {
+      "matcher": "factuality",
+      "meant": "fail",
+      "reply": "Category: D. The submission contradicts the expert answer (wrong name).",
+      "verdict": "pass",
+      "defect": "PASSES A FAIL"
+    },
+    {
+      "matcher": "factuality",
+      "meant": "pass",
+      "reply": "{\"category\": \"C\", \"reason\": \"Same details.\"}",
+      "verdict": "pass",
+      "defect": ""
+    },
+    {
+      "matcher": "closedqa",
+      "meant": "fail",
+      "reply": "The submission names Belgium, but Normandy is in France.\nN\nN",
+      "verdict": "fail",
+      "defect": ""
+    },
+    {
+      "matcher": "closedqa",
+      "meant": "fail",
+      "reply": "The submission names Belgium, but Normandy is in France, so the criterion is not met.\nVerdict: UNSATISFACTORY",
+      "verdict": "pass",
+      "defect": "PASSES A FAIL"
+    },
+    {
+      "matcher": "closedqa",
+      "meant": "fail",
+      "reply": "The submission gets the country wrong. Answer: NO, NOT SATISFACTORY",
+      "verdict": "pass",
+      "defect": "PASSES A FAIL"
+    },
+    {
+      "matcher": "closedqa",
+      "meant": "pass",
+      "reply": "The submission names France.\nY\nY",
+      "verdict": "pass",
+      "defect": ""
+    }
+  ]
+}

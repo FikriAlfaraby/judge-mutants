@@ -1,10 +1,12 @@
 // Feed promptfoo's real model-graded matchers judge replies whose meaning is unambiguous, through a
 // stub grading provider (no model is called), and record the verdict promptfoo reaches.
 //
-//   npm install && node repro.mjs          (pins promptfoo 0.124.1, see package.json)
+//   npm install && node repro.mjs [out.json]   (pins promptfoo 0.124.1, see package.json)
 //
 // Each row says what the judge meant. A row where promptfoo's verdict differs from the judge's
 // meaning is a parsing defect: the judge said FAIL and the test passed, or the reverse.
+import { writeFileSync } from "node:fs"
+
 import promptfoo from "promptfoo"
 
 const { assertions } = promptfoo
@@ -45,3 +47,4 @@ for (const r of results) {
 }
 const defects = results.filter((r) => r.defect)
 console.log(`\n${defects.length} of ${results.length} replies read against their meaning (promptfoo ${promptfoo.version ?? "0.124.1"})`)
+if (process.argv[2]) writeFileSync(process.argv[2], JSON.stringify({ promptfoo: "0.124.1", rows: results }, null, 2) + "\n")

@@ -1,0 +1,104 @@
+{
+  "judge": "noref-rubric.luna",
+  "cases": 43,
+  "originals": {
+    "judged": 43,
+    "passed": 40,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 3,
+      "passed": 2,
+      "unreadable": 0,
+      "rate": 0.6666666666666666
+    },
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 2,
+      "passed": 1,
+      "unreadable": 0,
+      "rate": 0.5
+    },
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 18,
+      "passed": 4,
+      "unreadable": 0,
+      "rate": 0.2222222222222222
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 13,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 40,
+      "passed": 40,
+      "unreadable": 0,
+      "rate": 1
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 40,
+      "passed": 40,
+      "unreadable": 0,
+      "rate": 1
+    }
+  ],
+  "falsePasses": [
+    {
+      "caseId": "squad-56df9e28",
+      "operator": "date",
+      "change": "1856 -> 1857",
+      "text": "Nikola Tesla (Serbian Cyrillic: Никола Тесла; 10 July 1857 – 7 January 1943) was a Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+      "reason": "The output states that Nikola Tesla was born on 10 July 1857, so the year is 1857."
+    },
+    {
+      "caseId": "squad-5733cf61",
+      "operator": "date",
+      "change": "1754 -> 1755",
+      "text": "The French and Indian War (1755–1763) was the North American theater of the worldwide Seven Years' War.",
+      "reason": "The output states that the French and Indian War took place from 1755 to 1763."
+    },
+    {
+      "caseId": "squad-5727e6cb",
+      "operator": "number",
+      "change": "40 -> 50",
+      "text": "A study by the World Institute for Development Economics Research at United Nations University reports that the richest 1% of adults alone owned 50% of global assets in the year 2000.",
+      "reason": "The output states that the richest 1% owned 50% of global assets."
+    },
+    {
+      "caseId": "squad-56e16182",
+      "operator": "entity",
+      "change": "Computational complexity theory -> Computability theory",
+      "text": "Computability theory is a branch of the theory of computation in theoretical computer science that focuses on classifying computational problems according to their inherent difficulty, and relating those classes to each other.",
+      "reason": "The output identifies computability theory as the branch concerned with classifying computational problems by difficulty and relating the resulting classes."
+    },
+    {
+      "caseId": "squad-57273a46",
+      "operator": "entity",
+      "change": "Construction -> Engineering",
+      "text": "Engineering is the process of constructing a building or infrastructure.",
+      "reason": "The output directly identifies engineering as the process of constructing a building or infrastructure."
+    },
+    {
+      "caseId": "squad-5727aa41",
+      "operator": "entity",
+      "change": "John Harvard -> Increase Mather",
+      "text": "Established originally by the Massachusetts legislature and soon thereafter named for Increase Mather (its first benefactor), Harvard is the United States' oldest institution of higher learning, and the Harvard Corporation (formally, the President and Fellows of Harvard College) is its first chartered corporation.",
+      "reason": "The output states that Harvard was named for Increase Mather, directly answering the question."
+    }
+  ],
+  "flaky": 0
+}

@@ -1,0 +1,61 @@
+{
+  "judge": "promptfoo-factuality.luna",
+  "cases": 43,
+  "originals": {
+    "judged": 43,
+    "passed": 38,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 17,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 11,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 3,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 2,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 38,
+      "passed": 38,
+      "unreadable": 0,
+      "rate": 1
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 38,
+      "passed": 37,
+      "unreadable": 0,
+      "rate": 0.9736842105263158
+    }
+  ],
+  "falsePasses": [],
+  "flaky": 0
+}

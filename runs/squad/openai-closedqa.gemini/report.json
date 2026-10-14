@@ -1,0 +1,61 @@
+{
+  "judge": "openai-closedqa.gemini",
+  "cases": 43,
+  "originals": {
+    "judged": 43,
+    "passed": 43,
+    "unreadable": 0
+  },
+  "rows": [
+    {
+      "operator": "entity",
+      "kind": "wrong",
+      "judged": 19,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "negation",
+      "kind": "wrong",
+      "judged": 14,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "date",
+      "kind": "wrong",
+      "judged": 4,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "number",
+      "kind": "wrong",
+      "judged": 2,
+      "passed": 0,
+      "unreadable": 0,
+      "rate": 0
+    },
+    {
+      "operator": "filler",
+      "kind": "control",
+      "judged": 43,
+      "passed": 43,
+      "unreadable": 0,
+      "rate": 1
+    },
+    {
+      "operator": "reformat",
+      "kind": "control",
+      "judged": 43,
+      "passed": 42,
+      "unreadable": 0,
+      "rate": 0.9767441860465116
+    }
+  ],
+  "falsePasses": [],
+  "flaky": 0
+}

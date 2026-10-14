@@ -11,3 +11,10 @@ answer the tool generates was read before any judge ran; `excluded.json` lists t
 with reasons. The code fixes that came out of the same reading (negating only the verb that governs
 the fact, unit changes only next to a number, no swaps of clause-length references) are in the git
 history before the first run.
+
+Known defect, found after the runs: `squad-5725b418` (Project Mercury) is a fragment. The sentence
+pattern in `scripts/squad-cases.py` ends a sentence at any period followed by a space, so it cut the
+context at "Dwight D." and "John F.". It is the only case affected (checked for answers ending at
+an abbreviation). It is kept as run, so the published verdicts match the data; four judge setups
+stumbled on it (see `docs/results.md`). The operators' own sentence splitter (`src/text.ts`)
+handles abbreviations since v0.2.
